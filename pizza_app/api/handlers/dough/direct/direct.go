@@ -23,8 +23,32 @@ func HandleDirectDough(c *gin.Context) {
 }
 
 func generateDirectRecipe(request requestModel.DoughRequest) directDoughModel.DirectDoughResponse {
-	// Implement your recipe generating logic here
-	var recipe directDoughModel.DirectDoughResponse
+	saltPerKg := 25.  // 2.5% of 1 kilogram of flour, fixed amount
+	yeastPerKg := 0.3 // 0.03% of 1 kilogram of flour, fixed amount
+
+	flour := request.DoughBallWeight / (1 + (request.Hydration / 100))
+	water := flour * (request.Hydration / 100)
+	salt := (flour / 1000) * saltPerKg   // Salt in relation to the calculated flour amount
+	yeast := (flour / 1000) * yeastPerKg // Yeast in relation to the calculated flour amount
+
+	totalFlour := flour * float64(request.DoughBallAmount)
+	totalWater := water * float64(request.DoughBallAmount)
+	totalSalt := salt * float64(request.DoughBallAmount)
+	totalYeast := yeast * float64(request.DoughBallAmount)
+
+	mainDough := directDoughModel.MainDough{
+		Flour:           totalFlour,
+		Water:           totalWater,
+		InstantDryYeast: totalYeast,
+		Salt:            totalSalt,
+	}
+
+	recipe := directDoughModel.DirectDoughResponse{
+		MainDough:       mainDough,
+		DoughBallAmount: request.DoughBallAmount,
+		Hydration:       request.Hydration,
+		DoughBallWeight: request.DoughBallWeight,
+	}
 
 	return recipe
 }
