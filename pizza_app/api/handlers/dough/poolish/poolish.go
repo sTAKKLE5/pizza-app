@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	utils "pizza-app/pizza_app/api/middleware"
@@ -25,7 +24,6 @@ func HandlePoolishDough(c *gin.Context) {
 }
 
 func generatePoolishRecipe(request requestModel.DoughRequest) poolishDoughModel.PoolishDoughResponse {
-	fmt.Printf("request: %v\n", request)
 	saltPerKg := 25.  // 2.5% of 1 kilogram of flour, fixed amount
 	yeastPerKg := 0.3 // 0.03% of 1 kilogram of flour, fixed amount
 
@@ -63,6 +61,5 @@ func generatePoolishRecipe(request requestModel.DoughRequest) poolishDoughModel.
 		DoughBallWeight: utils.RoundToDecimal(request.DoughBallWeight, 2),
 	}
 
-	fmt.Printf("recipe: %v\n", recipe)
 	return recipe
 }
