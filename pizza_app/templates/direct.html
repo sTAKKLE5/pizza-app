@@ -26,10 +26,10 @@
                     dataType: "json",
                     success: function (response) {
                         $("#result").html(
-                            "<p>Flour: " + response.mainDough.flour.toFixed(1) + "</p>" +
-                            "<p>Water: " + response.mainDough.water.toFixed(1) + "</p>" +
-                            "<p>Salt: " + response.mainDough.salt.toFixed(1) + "</p>" +
-                            "<p>Yeast: " + response.mainDough.instantDryYeast.toFixed(1) + "</p>"
+                            "<p>Flour: " + response.mainDough.flour + "</p>" +
+                            "<p>Water: " + response.mainDough.water + "</p>" +
+                            "<p>Salt: " + response.mainDough.salt + "</p>" +
+                            "<p>Yeast: " + response.mainDough.instantDryYeast + "</p>"
                         );
                     },
                     error: function (error) {

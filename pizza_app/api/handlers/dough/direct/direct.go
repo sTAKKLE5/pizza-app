@@ -3,6 +3,7 @@ package handlers
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
+	utils "pizza-app/pizza_app/api/middleware"
 	directDoughModel "pizza-app/pizza_app/models/dough/direct"
 	requestModel "pizza-app/pizza_app/models/request"
 )
@@ -14,7 +15,6 @@ func HandleDirectDough(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
 	// Process the data and generate the recipe.
 	recipe := generateDirectRecipe(request)
 
@@ -37,10 +37,10 @@ func generateDirectRecipe(request requestModel.DoughRequest) directDoughModel.Di
 	totalYeast := yeast * float64(request.DoughBallAmount)
 
 	mainDough := directDoughModel.MainDough{
-		Flour:           totalFlour,
-		Water:           totalWater,
-		InstantDryYeast: totalYeast,
-		Salt:            totalSalt,
+		Flour:           utils.RoundToDecimal(totalFlour, 2),
+		Water:           utils.RoundToDecimal(totalWater, 2),
+		InstantDryYeast: utils.RoundToDecimal(totalYeast, 2),
+		Salt:            utils.RoundToDecimal(totalSalt, 2),
 	}
 
 	recipe := directDoughModel.DirectDoughResponse{
