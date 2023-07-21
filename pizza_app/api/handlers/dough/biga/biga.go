@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	utils "pizza-app/pizza_app/api/middleware"
@@ -32,11 +31,6 @@ func generateBigaRecipe(request requestModel.DoughRequest) bigaDoughModel.BigaDo
 	water := flour * (request.Hydration / 100)
 	salt := (flour / 1000) * saltPerKg   // Salt in relation to the calculated flour amount
 	yeast := (flour / 1000) * yeastPerKg // Yeast in relation to the calculated flour amount
-
-	fmt.Printf("Flour: %f\n", flour)
-	fmt.Printf("Water: %f\n", water)
-	fmt.Printf("Salt: %f\n", salt)
-	fmt.Printf("Yeast: %f\n", yeast)
 
 	bigaFlour := flour * 0.50
 	bigaWater := bigaFlour * 0.45
