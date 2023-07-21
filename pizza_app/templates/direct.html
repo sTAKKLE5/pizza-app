@@ -10,6 +10,11 @@
                 var hydration = $("#hydrationDirect").val();
                 var doughBallWeight = $("#doughBallWeightDirect").val();
 
+                if(parseInt(hydration) <= 50) {
+                    alert('Hydration must be larger than 50');
+                    return;
+                }
+
                 var data = {
                     "doughBallAmount": parseInt(doughBallAmount),
                     "hydration": parseInt(hydration),
@@ -24,10 +29,10 @@
                     dataType: "json",
                     success: function (response) {
                         $("#resultDirect").html(
-                            "<p>Flour: " + response.mainDough.flour + "</p>" +
-                            "<p>Water: " + response.mainDough.water + "</p>" +
-                            "<p>Salt: " + response.mainDough.salt + "</p>" +
-                            "<p>Yeast: " + response.mainDough.instantDryYeast + "</p>"
+                            "<p>Flour: " + response.mainDough.flour + " g.</p>" +
+                            "<p>Water: " + response.mainDough.water + " g.</p>" +
+                            "<p>Salt: " + response.mainDough.salt + " g.</p>" +
+                            "<p>Yeast: " + response.mainDough.instantDryYeast + " g.</p>"
                         );
                     },
                     error: function (error) {
@@ -45,11 +50,11 @@
         <input type="number" id="doughBallAmountDirect" name="doughBallAmount" value="1">
     </div>
     <div>
-        <label for="hydrationDirect">Hydration:</label>
+        <label for="hydrationDirect">Hydration (0-100):</label>
         <input type="number" id="hydrationDirect" name="hydration" value="65">
     </div>
     <div>
-        <label for="doughBallWeightDirect">Dough Ball Weight:</label>
+        <label for="doughBallWeightDirect">Dough Ball Weight (g.):</label>
         <input type="number" id="doughBallWeightDirect" name="doughBallWeight" value="250">
     </div>
     <button id="calculateDirect">Calculate</button>

@@ -10,6 +10,11 @@
                 var hydration = $("#hydrationBiga").val();
                 var doughBallWeight = $("#doughBallWeightBiga").val();
 
+                if(parseInt(hydration) <= 50) {
+                    alert('Hydration must be larger than 50');
+                    return;
+                }
+
                 var data = {
                     "doughBallAmount": parseInt(doughBallAmount),
                     "hydration": parseInt(hydration),
@@ -25,13 +30,13 @@
                     success: function (response) {
                         $("#resultBiga").html(
                             "<h3>Biga</h3>" +
-                            "<p>Flour: " + response.biga.flour.toFixed(1) + "</p>" +
-                            "<p>Water: " + response.biga.water.toFixed(1) + "</p>" +
-                            "<p>Yeast: " + response.biga.instantDryYeast + "</p>" +
+                            "<p>Flour: " + response.biga.flour.toFixed(1) + " g.</p>" +
+                            "<p>Water: " + response.biga.water.toFixed(1) + " g.</p>" +
+                            "<p>Yeast: " + response.biga.instantDryYeast + " g.</p>" +
                             "<h3>Main Dough</h3>" +
-                            "<p>Flour: " + response.mainDough.flour.toFixed(1) + "</p>" +
-                            "<p>Water: " + response.mainDough.water.toFixed(1) + "</p>" +
-                            "<p>Salt: " + response.mainDough.salt.toFixed(1) + "</p>"
+                            "<p>Flour: " + response.mainDough.flour.toFixed(1) + " g.</p>" +
+                            "<p>Water: " + response.mainDough.water.toFixed(1) + " g.</p>" +
+                            "<p>Salt: " + response.mainDough.salt.toFixed(1) + " g.</p>"
                         );
                     },
                     error: function (error) {
@@ -49,11 +54,11 @@
         <input type="number" id="doughBallAmountBiga" name="doughBallAmount" value="1">
     </div>
     <div>
-        <label for="hydrationBiga">Hydration:</label>
+        <label for="hydrationBiga">Hydration (0-100):</label>
         <input type="number" id="hydrationBiga" name="hydration" value="65">
     </div>
     <div>
-        <label for="doughBallWeightBiga">Dough Ball Weight:</label>
+        <label for="doughBallWeightBiga">Dough Ball Weight (g.):</label>
         <input type="number" id="doughBallWeightBiga" name="doughBallWeight" value="250">
     </div>
     <button id="calculateBiga">Calculate</button>

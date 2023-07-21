@@ -10,6 +10,11 @@
                 var hydration = $("#hydrationPoolish").val();
                 var doughBallWeight = $("#doughBallWeightPoolish").val();
 
+                if(parseInt(hydration) <= 50) {
+                    alert('Hydration must be larger than 50');
+                    return;
+                }
+
                 var data = {
                     "doughBallAmount": parseInt(doughBallAmount),
                     "hydration": parseInt(hydration),
@@ -25,14 +30,14 @@
                     success: function (response) {
                         $("#resultPoolish").html(
                             "<h3>Poolish</h3>" +
-                            "<p>Flour: " + response.poolish.flour + "</p>" +
-                            "<p>Water: " + response.poolish.water + "</p>" +
-                            "<p>Yeast: " + response.poolish.instantDryYeast + "</p>" +
+                            "<p>Flour: " + response.poolish.flour + " g.</p>" +
+                            "<p>Water: " + response.poolish.water + " g.</p>" +
+                            "<p>Yeast: " + response.poolish.instantDryYeast + " g.</p>" +
                             "<h3>Main Dough</h3>" +
-                            "<p>Flour: " + response.mainDough.flour + "</p>" +
-                            "<p>Water: " + response.mainDough.water + "</p>" +
-                            "<p>Salt: " + response.mainDough.salt + "</p>" +
-                            "<p>Yeast: " + response.mainDough.instantDryYeast + "</p>"
+                            "<p>Flour: " + response.mainDough.flour + " g.</p>" +
+                            "<p>Water: " + response.mainDough.water + " g.</p>" +
+                            "<p>Salt: " + response.mainDough.salt + " g.</p>" +
+                            "<p>Yeast: " + response.mainDough.instantDryYeast + " g.</p>"
                         );
                     },
                     error: function (error) {
@@ -50,11 +55,11 @@
         <input type="number" id="doughBallAmountPoolish" name="doughBallAmount" value="1">
     </div>
     <div>
-        <label for="hydrationPoolish">Hydration:</label>
+        <label for="hydrationPoolish">Hydration (0-100):</label>
         <input type="number" id="hydrationPoolish" name="hydration" value="65">
     </div>
     <div>
-        <label for="doughBallWeightPoolish">Dough Ball Weight:</label>
+        <label for="doughBallWeightPoolish">Dough Ball Weight (g.):</label>
         <input type="number" id="doughBallWeightPoolish" name="doughBallWeight" value="250">
     </div>
     <button id="calculatePoolish">Calculate</button>
