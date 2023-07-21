@@ -17,7 +17,9 @@ func SetupRouter() *gin.Engine {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
 	router.GET("dough/biga", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "biga.html", gin.H{})
+		c.HTML(http.StatusOK, "biga.html", gin.H{
+			"url": "http://localhost:8080/dough/poolish",
+		})
 	})
 	router.GET("dough/poolish", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "poolish.html", gin.H{
