@@ -14,12 +14,9 @@ type MainDough struct {
 }
 
 type PoolishDoughResponse struct {
-	Poolish                PoolishDough `json:"poolish"`
-	MainDough              MainDough    `json:"mainDough"`
-	DoughBallAmount        int          `json:"doughBallAmount"`
-	Hydration              float64      `json:"hydration"`
-	DoughBallWeight        float64      `json:"doughBallWeight"`
-	PoolishHydration       float64      `json:"poolishHydration"`
-	PoolishWaterPercentage float64      `json:"poolishWaterPercentage"`
-	PoolishYeastPercentage float64      `json:"poolishYeastPercentage"`
+	Poolish         PoolishDough `json:"poolish"`
+	MainDough       MainDough    `json:"mainDough"`
+	DoughBallAmount int          `json:"doughBallAmount"`
+	Hydration       float64      `json:"hydration"`
+	DoughBallWeight float64      `json:"doughBallWeight"`
 }

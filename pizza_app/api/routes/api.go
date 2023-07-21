@@ -20,12 +20,14 @@ func SetupRouter() *gin.Engine {
 		c.HTML(http.StatusOK, "biga.html", gin.H{})
 	})
 	router.GET("dough/poolish", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "poolish.html", gin.H{})
+		c.HTML(http.StatusOK, "poolish.html", gin.H{
+			"url": "http://localhost:8080/dough/poolish",
+		})
 	})
 
 	router.GET("/dough/direct", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "direct.html", gin.H{
-			"url": "http://localhost:8080/dough/direct", // FIXME: This is hardcoded
+			"url": "http://localhost:8080/dough/direct",
 		})
 	})
 

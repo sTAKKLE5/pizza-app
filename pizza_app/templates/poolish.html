@@ -2,10 +2,63 @@
 <html>
 <head>
     <title>Pizza Dough Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#calculatePoolish").click(function() {
+                var doughBallAmount = $("#doughBallAmountPoolish").val();
+                var hydration = $("#hydrationPoolish").val();
+                var doughBallWeight = $("#doughBallWeightPoolish").val();
+
+                var data = {
+                    "doughBallAmount": parseInt(doughBallAmount),
+                    "hydration": parseInt(hydration),
+                    "doughBallWeight": parseInt(doughBallWeight)
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/dough/poolish",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(data),
+                    dataType: "json",
+                    success: function (response) {
+                        $("#resultPoolish").html(
+                            "<h3>Poolish</h3>" +
+                            "<p>Flour: " + response.poolish.flour + "</p>" +
+                            "<p>Water: " + response.poolish.water + "</p>" +
+                            "<p>Yeast: " + response.poolish.instantDryYeast + "</p>" +
+                            "<h3>Main Dough</h3>" +
+                            "<p>Flour: " + response.mainDough.flour + "</p>" +
+                            "<p>Water: " + response.mainDough.water + "</p>" +
+                            "<p>Salt: " + response.mainDough.salt + "</p>" +
+                            "<p>Yeast: " + response.mainDough.instantDryYeast + "</p>"
+                        );
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-    <h1>Pizza Dough Using Poolish</h1>
-    Coming soon!
+    <h1>Poolish Pizza Dough</h1>
+    <div>
+        <label for="doughBallAmountPoolish">Dough Ball Amount:</label>
+        <input type="number" id="doughBallAmountPoolish" name="doughBallAmount" value="1">
+    </div>
+    <div>
+        <label for="hydrationPoolish">Hydration:</label>
+        <input type="number" id="hydrationPoolish" name="hydration" value="65">
+    </div>
+    <div>
+        <label for="doughBallWeightPoolish">Dough Ball Weight:</label>
+        <input type="number" id="doughBallWeightPoolish" name="doughBallWeight" value="250">
+    </div>
+    <button id="calculatePoolish">Calculate</button>
+    <div id="resultPoolish"></div>
     <p><a href="/">Go to Home</a></p>
 </body>
 </html>

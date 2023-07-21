@@ -5,10 +5,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            $("#calculate").click(function() {
-                var doughBallAmount = $("#doughBallAmount").val();
-                var hydration = $("#hydration").val();
-                var doughBallWeight = $("#doughBallWeight").val();
+            $("#calculateDirect").click(function() {
+                var doughBallAmount = $("#doughBallAmountDirect").val();
+                var hydration = $("#hydrationDirect").val();
+                var doughBallWeight = $("#doughBallWeightDirect").val();
 
                 var data = {
                     "doughBallAmount": parseInt(doughBallAmount),
@@ -23,7 +23,7 @@
                     data: JSON.stringify(data),
                     dataType: "json",
                     success: function (response) {
-                        $("#result").html(
+                        $("#resultDirect").html(
                             "<p>Flour: " + response.mainDough.flour + "</p>" +
                             "<p>Water: " + response.mainDough.water + "</p>" +
                             "<p>Salt: " + response.mainDough.salt + "</p>" +
@@ -41,19 +41,19 @@
 <body>
     <h1>Direct Pizza Dough</h1>
     <div>
-        <label for="doughBallAmount">Dough Ball Amount:</label>
-        <input type="number" id="doughBallAmount" name="doughBallAmount" value="1">
+        <label for="doughBallAmountDirect">Dough Ball Amount:</label>
+        <input type="number" id="doughBallAmountDirect" name="doughBallAmount" value="1">
     </div>
     <div>
-        <label for="hydration">Hydration:</label>
-        <input type="number" id="hydration" name="hydration" value="65">
+        <label for="hydrationDirect">Hydration:</label>
+        <input type="number" id="hydrationDirect" name="hydration" value="65">
     </div>
     <div>
-        <label for="doughBallWeight">Dough Ball Weight:</label>
-        <input type="number" id="doughBallWeight" name="doughBallWeight" value="250">
+        <label for="doughBallWeightDirect">Dough Ball Weight:</label>
+        <input type="number" id="doughBallWeightDirect" name="doughBallWeight" value="250">
     </div>
-    <button id="calculate">Calculate</button>
-    <div id="result"></div>
+    <button id="calculateDirect">Calculate</button>
+    <div id="resultDirect"></div>
     <p><a href="/">Go to Home</a></p>
 </body>
 </html>
