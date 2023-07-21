@@ -16,6 +16,12 @@ func SetupRouter() *gin.Engine {
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
+	router.GET("dough/biga", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "biga.html", gin.H{})
+	})
+	router.GET("dough/poolish", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "poolish.html", gin.H{})
+	})
 
 	router.GET("/dough/direct", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "direct.html", gin.H{
