@@ -1,25 +1,25 @@
 package poolish
 
 type PoolishDough struct {
-	Flour           string `json:"flour"`
-	Water           string `json:"water"`
-	InstantDryYeast string `json:"instantDryYeast"`
+	Flour           float64 `json:"flour"`
+	Water           float64 `json:"water"`
+	InstantDryYeast float64 `json:"instantDryYeast"`
 }
 
 type MainDough struct {
-	Flour           string `json:"flour"`
-	Water           string `json:"water"`
-	Salt            string `json:"salt"`
-	InstantDryYeast string `json:"instantDryYeast"`
+	Flour           float64 `json:"flour"`
+	Water           float64 `json:"water"`
+	Salt            float64 `json:"salt"`
+	InstantDryYeast float64 `json:"instantDryYeast"`
 }
 
 type PoolishDoughResponse struct {
 	Poolish                PoolishDough `json:"poolish"`
 	MainDough              MainDough    `json:"mainDough"`
-	DoughBallAmount        string       `json:"doughBallAmount"`
-	Hydration              string       `json:"hydration"`
-	DoughBallWeight        string       `json:"doughBallWeight"`
-	PoolishHydration       string       `json:"poolishHydration"`
-	PoolishWaterPercentage string       `json:"poolishWaterPercentage"`
-	PoolishYeastPercentage string       `json:"poolishYeastPercentage"`
+	DoughBallAmount        int          `json:"doughBallAmount"`
+	Hydration              float64      `json:"hydration"`
+	DoughBallWeight        float64      `json:"doughBallWeight"`
+	PoolishHydration       float64      `json:"poolishHydration"`
+	PoolishWaterPercentage float64      `json:"poolishWaterPercentage"`
+	PoolishYeastPercentage float64      `json:"poolishYeastPercentage"`
 }
