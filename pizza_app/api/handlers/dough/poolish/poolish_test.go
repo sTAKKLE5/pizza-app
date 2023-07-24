@@ -9,27 +9,29 @@ import (
 
 // Test function for generatePoolishRecipe
 func TestGeneratePoolishRecipe(t *testing.T) {
-	request := requestModel.DoughRequest{
-		DoughBallAmount: 1,
-		Hydration:       50,
-		DoughBallWeight: 1500,
+	request := requestModel.PoolishDoughRequest{
+		DoughBallAmount:   1,
+		Hydration:         50,
+		DoughBallWeight:   1500,
+		PoolishPercentage: 50,
 	}
 
 	expectedResult := poolishDoughModel.PoolishDoughResponse{
 		Poolish: poolishDoughModel.PoolishDough{
-			Flour:           500,
-			Water:           500,
+			Flour:           250,
+			Water:           250,
 			InstantDryYeast: 0.15,
 		},
 		MainDough: poolishDoughModel.MainDough{
-			Flour:           500,
-			Water:           0,
+			Flour:           750,
+			Water:           250,
 			Salt:            25,
 			InstantDryYeast: 0.15,
 		},
-		DoughBallAmount: 1,
-		Hydration:       50,
-		DoughBallWeight: 1500,
+		DoughBallAmount:   1,
+		Hydration:         50,
+		DoughBallWeight:   1500,
+		PoolishPercentage: 50,
 	}
 
 	result := generatePoolishRecipe(request)

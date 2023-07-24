@@ -11,7 +11,7 @@
                 var doughBallWeight = $("#doughBallWeightPoolish").val();
                 var poolishPercentage = $("#poolishPercentagePoolish").val();
 
-                if(parseInt(hydration) <= 50 || parseInt(hydration) > 100) {
+                if(parseInt(hydration) < 50 || parseInt(hydration) > 100) {
                     alert('Hydration must be larger than 50 and less than or equal to 100');
                     return;
                 }
