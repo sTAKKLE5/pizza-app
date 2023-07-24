@@ -9,10 +9,15 @@ import (
 )
 
 func HandlePoolishDough(c *gin.Context) {
-	var request requestModel.DoughRequest
+	var request requestModel.PoolishDoughRequest
 
 	if err := c.BindJSON(&request); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if request.PoolishPercentage < 0 || request.PoolishPercentage > 100 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Poolish percentage must be between 0 and 100"})
 		return
 	}
 
@@ -23,7 +28,7 @@ func HandlePoolishDough(c *gin.Context) {
 	c.JSON(http.StatusOK, recipe)
 }
 
-func generatePoolishRecipe(request requestModel.DoughRequest) poolishDoughModel.PoolishDoughResponse {
+func generatePoolishRecipe(request requestModel.PoolishDoughRequest) poolishDoughModel.PoolishDoughResponse {
 	saltPerKg := 25.  // 2.5% of 1 kilogram of flour, fixed amount
 	yeastPerKg := 0.3 // 0.03% of 1 kilogram of flour, fixed amount
 
@@ -32,8 +37,8 @@ func generatePoolishRecipe(request requestModel.DoughRequest) poolishDoughModel.
 	salt := (flour / 1000) * saltPerKg   // Salt in relation to the calculated flour amount
 	yeast := (flour / 1000) * yeastPerKg // Yeast in relation to the calculated flour amount
 
-	poolishFlour := flour / 2
-	poolishWater := poolishFlour // Poolish is 100% hydration
+	poolishWater := water * (request.PoolishPercentage / 100)
+	poolishFlour := poolishWater // Poolish is 100% hydration
 	poolishYeast := yeast / 2    // Half of yeast is part of poolish
 
 	finalDoughFlour := flour - poolishFlour
@@ -54,11 +59,12 @@ func generatePoolishRecipe(request requestModel.DoughRequest) poolishDoughModel.
 	}
 
 	recipe := poolishDoughModel.PoolishDoughResponse{
-		Poolish:         poolish,
-		MainDough:       mainDough,
-		DoughBallAmount: request.DoughBallAmount,
-		Hydration:       request.Hydration,
-		DoughBallWeight: request.DoughBallWeight,
+		Poolish:           poolish,
+		MainDough:         mainDough,
+		DoughBallAmount:   request.DoughBallAmount,
+		Hydration:         request.Hydration,
+		DoughBallWeight:   request.DoughBallWeight,
+		PoolishPercentage: request.PoolishPercentage,
 	}
 
 	return recipe

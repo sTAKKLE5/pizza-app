@@ -9,16 +9,23 @@
                 var doughBallAmount = $("#doughBallAmountPoolish").val();
                 var hydration = $("#hydrationPoolish").val();
                 var doughBallWeight = $("#doughBallWeightPoolish").val();
+                var poolishPercentage = $("#poolishPercentagePoolish").val();
 
-                if(parseInt(hydration) <= 50) {
-                    alert('Hydration must be larger than 50');
+                if(parseInt(hydration) <= 50 || parseInt(hydration) > 100) {
+                    alert('Hydration must be larger than 50 and less than or equal to 100');
+                    return;
+                }
+
+                if(parseInt(poolishPercentage) < 0 || parseInt(poolishPercentage) > 100) {
+                    alert('Poolish Percentage must be between 0 and 100');
                     return;
                 }
 
                 var data = {
                     "doughBallAmount": parseInt(doughBallAmount),
                     "hydration": parseInt(hydration),
-                    "doughBallWeight": parseInt(doughBallWeight)
+                    "doughBallWeight": parseInt(doughBallWeight),
+                    "poolishPercentage": parseInt(poolishPercentage)
                 };
 
                 $.ajax({
@@ -61,6 +68,10 @@
     <div>
         <label for="doughBallWeightPoolish">Dough Ball Weight (g.):</label>
         <input type="number" id="doughBallWeightPoolish" name="doughBallWeight" value="250">
+    </div>
+    <div>
+        <label for="poolishPercentagePoolish">Poolish Percentage (0-100):</label>
+        <input type="number" id="poolishPercentagePoolish" name="poolishPercentage" value="50">
     </div>
     <button id="calculatePoolish">Calculate</button>
     <div id="resultPoolish"></div>
