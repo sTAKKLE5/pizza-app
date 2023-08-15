@@ -1,68 +1,30 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Pizza Dough Calculator using Biga</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#calculateBiga").click(function() {
-                var doughBallAmount = $("#doughBallAmountBiga").val();
-                var hydration = $("#hydrationBiga").val();
-                var doughBallWeight = $("#doughBallWeightBiga").val();
-
-                if(parseInt(hydration) <= 50) {
-                    alert('Hydration must be larger than 50');
-                    return;
-                }
-
-                var data = {
-                    "doughBallAmount": parseInt(doughBallAmount),
-                    "hydration": parseInt(hydration),
-                    "doughBallWeight": parseInt(doughBallWeight)
-                };
-
-                $.ajax({
-                    type: "POST",
-                    url: "/dough/biga",
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify(data),
-                    dataType: "json",
-                    success: function (response) {
-                        $("#resultBiga").html(
-                            "<h3>Biga</h3>" +
-                            "<p>Flour: " + response.biga.flour.toFixed(1) + " g.</p>" +
-                            "<p>Water: " + response.biga.water.toFixed(1) + " g.</p>" +
-                            "<p>Yeast: " + response.biga.instantDryYeast + " g.</p>" +
-                            "<h3>Main Dough</h3>" +
-                            "<p>Flour: " + response.mainDough.flour.toFixed(1) + " g.</p>" +
-                            "<p>Water: " + response.mainDough.water.toFixed(1) + " g.</p>" +
-                            "<p>Salt: " + response.mainDough.salt.toFixed(1) + " g.</p>"
-                        );
-                    },
-                    error: function (error) {
-                        console.error(error);
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
 </head>
+
 <body>
     <h1>Biga Pizza Dough</h1>
-    <div>
-        <label for="doughBallAmountBiga">Dough Ball Amount:</label>
-        <input type="number" id="doughBallAmountBiga" name="doughBallAmount" value="1">
-    </div>
-    <div>
-        <label for="hydrationBiga">Hydration (0-100):</label>
-        <input type="number" id="hydrationBiga" name="hydration" value="65">
-    </div>
-    <div>
-        <label for="doughBallWeightBiga">Dough Ball Weight (g.):</label>
-        <input type="number" id="doughBallWeightBiga" name="doughBallWeight" value="250">
-    </div>
-    <button id="calculateBiga">Calculate</button>
+    <form hx-post="/dough/biga" hx-trigger="click" hx-target="#resultBiga">
+        <div>
+            <label for="doughBallAmountBiga">Dough Ball Amount:</label>
+            <input type="number" id="doughBallAmountBiga" name="doughBallAmount" value="1">
+        </div>
+        <div>
+            <label for="hydrationBiga">Hydration (0-100):</label>
+            <input type="number" id="hydrationBiga" name="hydration" value="65">
+        </div>
+        <div>
+            <label for="doughBallWeightBiga">Dough Ball Weight (g.):</label>
+            <input type="number" id="doughBallWeightBiga" name="doughBallWeight" value="250">
+        </div>
+        <button type="submit">Calculate</button>
+    </form>
     <div id="resultBiga"></div>
     <p><a href="/">Go to Home</a></p>
 </body>
+
 </html>
