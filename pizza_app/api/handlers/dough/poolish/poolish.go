@@ -11,21 +11,16 @@ import (
 func HandlePoolishDough(c *gin.Context) {
 	var request requestModel.PoolishDoughRequest
 
-	if err := c.BindJSON(&request); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
-	if request.PoolishPercentage < 0 || request.PoolishPercentage > 100 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Poolish percentage must be between 0 and 100"})
-		return
-	}
+	request.DoughBallWeight = utils.ParseFormFloat64(c, "doughBallWeight")
+	request.Hydration = utils.ParseFormFloat64(c, "hydration")
+	request.DoughBallAmount = utils.ParseFormInt(c, "doughBallAmount")
+	request.PoolishPercentage = utils.ParseFormFloat64(c, "poolishPercentage")
 
 	// Process the data and generate the recipe.
 	recipe := generatePoolishRecipe(request)
 
-	// Respond with the recipe data.
-	c.JSON(http.StatusOK, recipe)
+	// Respond with the recipe data using an HTML template.
+	c.HTML(http.StatusOK, "poolish_recipe.html", recipe)
 }
 
 func generatePoolishRecipe(request requestModel.PoolishDoughRequest) poolishDoughModel.PoolishDoughResponse {

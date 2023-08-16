@@ -2,78 +2,29 @@
 <html>
 <head>
     <title>Pizza Dough Calculator</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#calculatePoolish").click(function() {
-                var doughBallAmount = $("#doughBallAmountPoolish").val();
-                var hydration = $("#hydrationPoolish").val();
-                var doughBallWeight = $("#doughBallWeightPoolish").val();
-                var poolishPercentage = $("#poolishPercentagePoolish").val();
-
-                if(parseInt(hydration) < 50 || parseInt(hydration) > 100) {
-                    alert('Hydration must be larger than 50 and less than or equal to 100');
-                    return;
-                }
-
-                if(parseInt(poolishPercentage) < 0 || parseInt(poolishPercentage) > 100) {
-                    alert('Poolish Percentage must be between 0 and 100');
-                    return;
-                }
-
-                var data = {
-                    "doughBallAmount": parseInt(doughBallAmount),
-                    "hydration": parseInt(hydration),
-                    "doughBallWeight": parseInt(doughBallWeight),
-                    "poolishPercentage": parseInt(poolishPercentage)
-                };
-
-                $.ajax({
-                    type: "POST",
-                    url: "/dough/poolish",
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify(data),
-                    dataType: "json",
-                    success: function (response) {
-                        $("#resultPoolish").html(
-                            "<h3>Poolish</h3>" +
-                            "<p>Flour: " + response.poolish.flour + " g.</p>" +
-                            "<p>Water: " + response.poolish.water + " g.</p>" +
-                            "<p>Yeast: " + response.poolish.instantDryYeast + " g.</p>" +
-                            "<h3>Main Dough</h3>" +
-                            "<p>Flour: " + response.mainDough.flour + " g.</p>" +
-                            "<p>Water: " + response.mainDough.water + " g.</p>" +
-                            "<p>Salt: " + response.mainDough.salt + " g.</p>" +
-                            "<p>Yeast: " + response.mainDough.instantDryYeast + " g.</p>"
-                        );
-                    },
-                    error: function (error) {
-                        console.error(error);
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="https://unpkg.com/htmx.org@1.9.4"></script>
 </head>
 <body>
     <h1>Poolish Pizza Dough</h1>
-    <div>
-        <label for="doughBallAmountPoolish">Dough Ball Amount:</label>
-        <input type="number" id="doughBallAmountPoolish" name="doughBallAmount" value="1">
-    </div>
-    <div>
-        <label for="hydrationPoolish">Hydration (0-100):</label>
-        <input type="number" id="hydrationPoolish" name="hydration" value="65">
-    </div>
-    <div>
-        <label for="doughBallWeightPoolish">Dough Ball Weight (g.):</label>
-        <input type="number" id="doughBallWeightPoolish" name="doughBallWeight" value="250">
-    </div>
-    <div>
-        <label for="poolishPercentagePoolish">Poolish Percentage (0-100):</label>
-        <input type="number" id="poolishPercentagePoolish" name="poolishPercentage" value="50">
-    </div>
-    <button id="calculatePoolish">Calculate</button>
+    <form hx-post="/dough/poolish" hx-trigger="click" hx-target="#resultPoolish">
+        <div>
+            <label for="doughBallAmountPoolish">Dough Ball Amount:</label>
+            <input type="number" id="doughBallAmountPoolish" name="doughBallAmount" value="1">
+        </div>
+        <div>
+            <label for="hydrationPoolish">Hydration (0-100):</label>
+            <input type="number" id="hydrationPoolish" name="hydration" value="65">
+        </div>
+        <div>
+            <label for="doughBallWeightPoolish">Dough Ball Weight (g.):</label>
+            <input type="number" id="doughBallWeightPoolish" name="doughBallWeight" value="250">
+        </div>
+        <div>
+            <label for="poolishPercentagePoolish">Poolish Percentage (0-100):</label>
+            <input type="number" id="poolishPercentagePoolish" name="poolishPercentage" value="50">
+        </div>
+        <button id="calculatePoolish">Calculate</button>
+    </form>
     <div id="resultPoolish"></div>
     <p><a href="/">Go to Home</a></p>
 </body>

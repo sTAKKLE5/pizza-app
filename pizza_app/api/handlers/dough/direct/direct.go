@@ -11,15 +11,15 @@ import (
 func HandleDirectDough(c *gin.Context) {
 	var request requestModel.DoughRequest
 
-	if err := c.BindJSON(&request); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
+	request.DoughBallWeight = utils.ParseFormFloat64(c, "doughBallWeight")
+	request.Hydration = utils.ParseFormFloat64(c, "hydration")
+	request.DoughBallAmount = utils.ParseFormInt(c, "doughBallAmount")
+
 	// Process the data and generate the recipe.
 	recipe := generateDirectRecipe(request)
 
-	// Respond with the recipe data.
-	c.JSON(http.StatusOK, recipe)
+	// Respond with the recipe data using an HTML template.
+	c.HTML(http.StatusOK, "direct_recipe.html", recipe)
 }
 
 func generateDirectRecipe(request requestModel.DoughRequest) directDoughModel.DirectDoughResponse {
