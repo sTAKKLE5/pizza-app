@@ -1,14 +1,14 @@
 # pizza-app
 ## Description
-This is a pizza dough recipe app.  
+This is a pizza dough recipe app using GO and HTMX and <b>no</b> JavaScript.  
 
 
 ## Build 
 ```sh
-docker build -t pizza-app .
+go build main.go
 ```
 
 ## Run
-```sh   
-docker run -d -p 8080:8080 pizza-app
+```sh
+./main
 ```
