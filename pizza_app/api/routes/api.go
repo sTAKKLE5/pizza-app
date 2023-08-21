@@ -14,6 +14,9 @@ func SetupRouter() *gin.Engine {
 
 	router.LoadHTMLGlob("templates/**/*")
 
+	// add favicon
+	router.StaticFile("/favicon.ico", "./static/favicon.ico")
+
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
