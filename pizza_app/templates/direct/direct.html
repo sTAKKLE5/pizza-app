@@ -3,23 +3,25 @@
   {{ template "head.html" . }}
   <body>
     {{ template "navbar.html" . }}
-    <div class="container mt-4" style="max-width: 600px;">
-      <form hx-post="/dough/direct" hx-trigger="click" hx-target="#resultDirect">
-        <div class="mb-3">
-          <label for="doughBallAmountDirect" class="form-label">Dough Ball Amount:</label>
-          <input type="number" class="form-control" id="doughBallAmountDirect" name="doughBallAmount" value="1">
-        </div>
-        <div class="mb-3">
-          <label for="hydrationDirect" class="form-label">Hydration (0-100):</label>
-          <input type="number" class="form-control" id="hydrationDirect" name="hydration" value="65">
-        </div>
-        <div class="mb-3">
-          <label for="doughBallWeightDirect" class="form-label">Dough Ball Weight (g.):</label>
-          <input type="number" class="form-control" id="doughBallWeightDirect" name="doughBallWeight" value="250">
-        </div>
-        <button type="submit" class="btn btn-primary" id="calculateDirect">Calculate</button>
-      </form>
-      <div class="mt-4" id="resultDirect"></div>
+    <div class="content-wrapper">
+      <div class="container mt-4" style="max-width: 600px;">
+        <form hx-post="/dough/direct" hx-trigger="click" hx-target="#resultDirect">
+          <div class="mb-3">
+            <label for="doughBallAmountDirect" class="form-label">Dough Ball Amount:</label>
+            <input type="number" class="form-control" id="doughBallAmountDirect" name="doughBallAmount" value="1">
+          </div>
+          <div class="mb-3">
+            <label for="hydrationDirect" class="form-label">Hydration (0-100):</label>
+            <input type="number" class="form-control" id="hydrationDirect" name="hydration" value="65">
+          </div>
+          <div class="mb-3">
+            <label for="doughBallWeightDirect" class="form-label">Dough Ball Weight (g.):</label>
+            <input type="number" class="form-control" id="doughBallWeightDirect" name="doughBallWeight" value="250">
+          </div>
+          <button type="submit" class="btn btn-primary" id="calculateDirect">Calculate</button>
+        </form>
+        <div class="mt-4" id="resultDirect"></div>
+      </div>
     </div>
     {{ template "footer.html" . }}
   </body>

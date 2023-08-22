@@ -3,23 +3,25 @@
   {{ template "head.html" . }}
   <body>
     {{ template "navbar.html" . }}
-    <div class="container mt-4" style="max-width: 600px;">
-      <form hx-post="/dough/biga" hx-trigger="click" hx-target="#resultBiga">
-        <div class="mb-3">
-          <label for="doughBallAmountBiga" class="form-label">Dough Ball Amount:</label>
-          <input type="number" class="form-control" id="doughBallAmountBiga" name="doughBallAmount" value="1">
-        </div>
-        <div class="mb-3">
-          <label for="hydrationBiga" class="form-label">Hydration (0-100):</label>
-          <input type="number" class="form-control" id="hydrationBiga" name="hydration" value="65">
-        </div>
-        <div class="mb-3">
-          <label for="doughBallWeightBiga" class="form-label">Dough Ball Weight (g.):</label>
-          <input type="number" class="form-control" id="doughBallWeightBiga" name="doughBallWeight" value="250">
-        </div>
-        <button type="submit" class="btn btn-primary">Calculate</button>
-      </form>
-      <div class="mt-4" id="resultBiga"></div>
+    <div class="content-wrapper">
+      <div class="container mt-4" style="max-width: 600px;">
+        <form hx-post="/dough/biga" hx-trigger="click" hx-target="#resultBiga">
+          <div class="mb-3">
+            <label for="doughBallAmountBiga" class="form-label">Dough Ball Amount:</label>
+            <input type="number" class="form-control" id="doughBallAmountBiga" name="doughBallAmount" value="1">
+          </div>
+          <div class="mb-3">
+            <label for="hydrationBiga" class="form-label">Hydration (0-100):</label>
+            <input type="number" class="form-control" id="hydrationBiga" name="hydration" value="65">
+          </div>
+          <div class="mb-3">
+            <label for="doughBallWeightBiga" class="form-label">Dough Ball Weight (g.):</label>
+            <input type="number" class="form-control" id="doughBallWeightBiga" name="doughBallWeight" value="250">
+          </div>
+          <button type="submit" class="btn btn-primary">Calculate</button>
+        </form>
+        <div class="mt-4" id="resultBiga"></div>
+      </div>
     </div>
     {{ template "footer.html" . }}
   </body>

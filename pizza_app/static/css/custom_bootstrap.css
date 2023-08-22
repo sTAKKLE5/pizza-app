@@ -7,3 +7,18 @@
     background-color: rgba(181, 5, 93, 1);
     border-color: rgb(181, 5, 93, 1);
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* use viewport height as a minimum height for the body */
+}
+
+.content-wrapper {
+    flex: 1; /* flex grow */
+}
+
+.sticky-footer {
+    flex-shrink: 0; /* prevent shrinking */
+    /* Add any other styling for your footer */
+}
