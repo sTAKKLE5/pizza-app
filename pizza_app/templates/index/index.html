@@ -1,36 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Pizza Dough Calculator <3</title>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Dough Calculator</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+  </head>
 
-<body>
-    <h1>Welcome to the Pizza Dough Calculator</h1>
-    <p>Ready to make some dough? Let's get started!</p>
-    <a href="/dough/direct">Direct Dough Calculator</a><br>
-    <a href="/dough/poolish">Dough Calculator Using Poolish</a><br>
-    <a href="/dough/biga">Dough Calculator Using Biga</a><br><br>
+  <style>
+    .center-flexbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
 
-    <pre>
-                         ___
-                        |  ~~--.
-                        |%=@%%/
-                        |o%%%/
-                     __ |%%o/
-               _,--~~ | |(_/ ._
-            ,/'  m%%%%| |o/ /  `\
-           /' m%%o(_)%| |/ /o%%m `\
-         /' %%@=%o%%%o|   /(_)o%%% `\
-        /  %o%%%%%=@%%|  /%%o%%@=%%  \
-       |  (_)%(_)%%o%%| /%%%=@(_)%%%  |
-       | %%o%%%%o%%%(_|/%o%%o%%%%o%%% |
-       | %%o%(_)%%%%%o%(_)%%%o%%o%o%% |
-       |  (_)%%=@%(_)%o%o%%(_)%o(_)%  |
-        \ ~%%o%%%%%o%o%=@%%o%%@%%o%~ /
-         \. ~o%%(_)%%%o%(_)%%(_)o~ ,/
-           \_ ~o%=@%(_)%o%%(_)%~ _/
-             `\_~~o%%%o%%%%%~~_/'
-                `--..____,,--'
-    </pre>
-</body>
+  <body>
+    {{ template "navbar.html" . }}
+    <div class="container mt-4 center-flexbox">
+      <img src="/img/pizza.png" width="50%" height="auto" alt="Image of a pizza slice">
+    </div>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
 </html>

@@ -1,33 +1,42 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizza Dough Calculator</title>
     <script src="https://unpkg.com/htmx.org@1.9.4"></script>
-</head>
-
-<body>
-    <h1>Poolish Pizza Dough</h1>
-    <form hx-post="/dough/poolish" hx-trigger="click" hx-target="#resultPoolish">
-        <div>
-            <label for="doughBallAmountPoolish">Dough Ball Amount:</label>
-            <input type="number" id="doughBallAmountPoolish" name="doughBallAmount" value="1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+  </head>
+  <body>
+    {{ template "navbar.html" . }}
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-md-12">
+          <form hx-post="/dough/poolish" hx-trigger="click" hx-target="#resultPoolish">
+            <div>
+              <label for="doughBallAmountPoolish">Dough Ball Amount:</label>
+              <input type="number" id="doughBallAmountPoolish" name="doughBallAmount" value="1">
+            </div>
+            <div>
+              <label for="hydrationPoolish">Hydration (0-100):</label>
+              <input type="number" id="hydrationPoolish" name="hydration" value="65">
+            </div>
+            <div>
+              <label for="doughBallWeightPoolish">Dough Ball Weight (g.):</label>
+              <input type="number" id="doughBallWeightPoolish" name="doughBallWeight" value="250">
+            </div>
+            <div>
+              <label for="poolishPercentagePoolish">Poolish Percentage (0-100):</label>
+              <input type="number" id="poolishPercentagePoolish" name="poolishPercentage" value="50">
+            </div>
+            <button id="calculatePoolish">Calculate</button>
+          </form>
         </div>
-        <div>
-            <label for="hydrationPoolish">Hydration (0-100):</label>
-            <input type="number" id="hydrationPoolish" name="hydration" value="65">
-        </div>
-        <div>
-            <label for="doughBallWeightPoolish">Dough Ball Weight (g.):</label>
-            <input type="number" id="doughBallWeightPoolish" name="doughBallWeight" value="250">
-        </div>
-        <div>
-            <label for="poolishPercentagePoolish">Poolish Percentage (0-100):</label>
-            <input type="number" id="poolishPercentagePoolish" name="poolishPercentage" value="50">
-        </div>
-        <button id="calculatePoolish">Calculate</button>
-    </form>
-    <div id="resultPoolish"></div>
-    <p><a href="/">Go to Home</a></p>
-</body>
+      </div>
+      <div class="row">
+        <div class="col-md-12 mt-4" id="resultPoolish"></div>
+      </div>
+    </div>
+  <script src="/js/bootstrap.min.js"></script>
+  </body>
 </html>

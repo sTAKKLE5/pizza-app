@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand-md bg-body py-3">
+    <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span class="bs-icon-md bs-icon-rounded d-flex justify-content-center align-items-center me-2 bs-icon"><svg class="bi bi-fire" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z"></path>
+                </svg></span><span>Pizza Dough App</span></a><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div id="navcol-2" class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class='nav-link {{if eq .currentPath "/dough/direct"}}active{{end}}' href="/dough/direct">Direct</a></li>
+                <li class="nav-item"><a class='nav-link {{if eq .currentPath "/dough/poolish"}}active{{end}}' href="/dough/poolish">Poolish</a></li>
+                <li class="nav-item"><a class='nav-link {{if eq .currentPath "/dough/biga"}}active{{end}}' href="/dough/biga">Biga</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
