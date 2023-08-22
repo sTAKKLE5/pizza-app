@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizza Punk</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-  </head>
+  {{ template "head.html" . }}
 
   <style>
     .center-flexbox {
@@ -21,6 +16,5 @@
       <img src="/img/pizza_punk.png" width="50%" height="auto" alt="Image of a pizza slice">
     </div>
     {{ template "footer.html" . }}
-    <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>
