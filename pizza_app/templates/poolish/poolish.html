@@ -9,34 +9,29 @@
   </head>
   <body>
     {{ template "navbar.html" . }}
-    <div class="container mt-4">
-      <div class="row">
-        <div class="col-md-12">
-          <form hx-post="/dough/poolish" hx-trigger="click" hx-target="#resultPoolish">
-            <div>
-              <label for="doughBallAmountPoolish">Dough Ball Amount:</label>
-              <input type="number" id="doughBallAmountPoolish" name="doughBallAmount" value="1">
-            </div>
-            <div>
-              <label for="hydrationPoolish">Hydration (0-100):</label>
-              <input type="number" id="hydrationPoolish" name="hydration" value="65">
-            </div>
-            <div>
-              <label for="doughBallWeightPoolish">Dough Ball Weight (g.):</label>
-              <input type="number" id="doughBallWeightPoolish" name="doughBallWeight" value="250">
-            </div>
-            <div>
-              <label for="poolishPercentagePoolish">Poolish Percentage (0-100):</label>
-              <input type="number" id="poolishPercentagePoolish" name="poolishPercentage" value="50">
-            </div>
-            <button id="calculatePoolish">Calculate</button>
-          </form>
+    <div class="container mt-4" style="max-width: 600px;">
+      <form hx-post="/dough/poolish" hx-trigger="click" hx-target="#resultPoolish">
+        <div class="mb-3">
+          <label for="doughBallAmountPoolish" class="form-label">Dough Ball Amount:</label>
+          <input type="number" class="form-control" id="doughBallAmountPoolish" name="doughBallAmount" value="1">
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 mt-4" id="resultPoolish"></div>
-      </div>
+        <div class="mb-3">
+          <label for="hydrationPoolish" class="form-label">Hydration (0-100):</label>
+          <input type="number" class="form-control" id="hydrationPoolish" name="hydration" value="65">
+        </div>
+        <div class="mb-3">
+          <label for="doughBallWeightPoolish" class="form-label">Dough Ball Weight (g.):</label>
+          <input type="number" class="form-control" id="doughBallWeightPoolish" name="doughBallWeight" value="250">
+        </div>
+        <div class="mb-3">
+          <label for="poolishPercentagePoolish" class="form-label">Poolish Percentage (0-100):</label>
+          <input type="number" class="form-control" id="poolishPercentagePoolish" name="poolishPercentage" value="50">
+        </div>
+        <button type="submit" class="btn btn-primary" id="calculatePoolish">Calculate</button>
+      </form>
+      <div class="mt-4" id="resultPoolish"></div>
     </div>
-  <script src="/js/bootstrap.min.js"></script>
+    {{ template "footer.html" . }}
+    <script src="/js/bootstrap.min.js"></script>
   </body>
 </html>
