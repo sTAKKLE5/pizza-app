@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html>
   {{ template "head.html" . }}
-
-  <style>
-    .center-flexbox {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-  </style>
-
   <body>
     {{ template "navbar.html" . }}
     <div class="content-wrapper">
-      <div class="container mt-4 center-flexbox">
-        <img src="/img/pizza_punk.png" width="50%" height="auto" alt="Image of a pizza slice">
-      </div>
+      <div class="container py-4 py-xl-5">
+    <div class="row gy-4 gy-md-0">
+        <div class="col-md-6">
+            <div class="p-xl-5 m-xl-5"><img class="rounded img-fluid w-100 fit-cover" style="min-height: 400px;" src="/img/pizza_punk.png" /></div>
+        </div>
+        <div class="col-md-6 d-md-flex align-items-md-center">
+            <div style="max-width: 350px;">
+                <h2 class="text-uppercase fw-bold">Punk'd by Pizza: <br>Dough Like No Other!</h2>
+                <p class="my-3">Discover traditional dough and modern sauce recipes that challenge the conventional palate.</p>
+                <a class="btn btn-primary btn-lg me-2" role="button" href="/dough/poolish">Dough</a>
+                <a class="btn btn-outline-primary btn-lg disabled" role="button" href="#">Sauce</a>
+            </div>
+        </div>
     </div>
+</div>
+
+
+    </div>
+
     {{ template "footer.html" . }}
   </body>
 </html>
