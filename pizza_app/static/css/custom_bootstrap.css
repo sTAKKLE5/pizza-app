@@ -1,16 +1,25 @@
-.btn-primary {
+#doughButton {
     background-color: rgba(181, 5, 93, 1);
-    border-color: rgb(181, 5, 93, 1);
+    border-color: rgba(181, 5, 93, 1);
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+#doughButton:hover, #doughButton:focus, #doughButton:active {
     background-color: rgba(171, 64, 115, 0.9);
-    border-color: rgb(171, 64, 115, 1);
+    border-color: rgba(171, 64, 115, 1);
 }
 
-.btn.btn-outline-primary.btn-lg.disabled {
-    color: rgb(181, 5, 93, 1);
-    border-color: rgb(181, 5, 93, 1);
+#sauceButton {
+    color: rgb(56, 86, 91);
+    border-color: rgb(56, 86, 91);
+}
+
+.navbar a:not(.navbar-brand) {
+    text-decoration: none;
+}
+
+/* When hovered, apply the underline */
+.navbar a:not(.navbar-brand):hover {
+    text-decoration: underline;
 }
 
 body {
