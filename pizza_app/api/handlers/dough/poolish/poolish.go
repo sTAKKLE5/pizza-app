@@ -3,7 +3,7 @@ package handlers
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	utils "pizza-app/pizza_app/api/middleware"
+	"pizza-app/pizza_app/api/middleware"
 	poolishDoughModel "pizza-app/pizza_app/models/dough/poolish"
 	requestModel "pizza-app/pizza_app/models/request"
 )
@@ -11,10 +11,10 @@ import (
 func HandlePoolishDough(c *gin.Context) {
 	var request requestModel.PoolishDoughRequest
 
-	request.DoughBallWeight = utils.ParseFormFloat64(c, "doughBallWeight")
-	request.Hydration = utils.ParseFormFloat64(c, "hydration")
-	request.DoughBallAmount = utils.ParseFormInt(c, "doughBallAmount")
-	request.PoolishPercentage = utils.ParseFormFloat64(c, "poolishPercentage")
+	request.DoughBallWeight = middleware.ParseFormFloat64(c, "doughBallWeight")
+	request.Hydration = middleware.ParseFormFloat64(c, "hydration")
+	request.DoughBallAmount = middleware.ParseFormInt(c, "doughBallAmount")
+	request.PoolishPercentage = middleware.ParseFormFloat64(c, "poolishPercentage")
 
 	// Process the data and generate the recipe.
 	recipe := generatePoolishRecipe(request)
@@ -41,15 +41,15 @@ func generatePoolishRecipe(request requestModel.PoolishDoughRequest) poolishDoug
 	finalDoughYeast := yeast / 2 // Other half of yeast is part of the final dough
 
 	poolish := poolishDoughModel.PoolishDough{
-		Flour:           utils.RoundToDecimal(poolishFlour*float64(request.DoughBallAmount), 2),
-		Water:           utils.RoundToDecimal(poolishWater*float64(request.DoughBallAmount), 2),
+		Flour:           middleware.RoundToDecimal(poolishFlour*float64(request.DoughBallAmount), 2),
+		Water:           middleware.RoundToDecimal(poolishWater*float64(request.DoughBallAmount), 2),
 		InstantDryYeast: poolishYeast * float64(request.DoughBallAmount),
 	}
 
 	mainDough := poolishDoughModel.MainDough{
-		Flour:           utils.RoundToDecimal(finalDoughFlour*float64(request.DoughBallAmount), 2),
-		Water:           utils.RoundToDecimal(finalDoughWater*float64(request.DoughBallAmount), 2),
-		Salt:            utils.RoundToDecimal(salt*float64(request.DoughBallAmount), 2),
+		Flour:           middleware.RoundToDecimal(finalDoughFlour*float64(request.DoughBallAmount), 2),
+		Water:           middleware.RoundToDecimal(finalDoughWater*float64(request.DoughBallAmount), 2),
+		Salt:            middleware.RoundToDecimal(salt*float64(request.DoughBallAmount), 2),
 		InstantDryYeast: finalDoughYeast * float64(request.DoughBallAmount),
 	}
 

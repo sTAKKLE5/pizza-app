@@ -3,7 +3,7 @@ package handlers
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	utils "pizza-app/pizza_app/api/middleware"
+	"pizza-app/pizza_app/api/middleware"
 	directDoughModel "pizza-app/pizza_app/models/dough/direct"
 	requestModel "pizza-app/pizza_app/models/request"
 )
@@ -11,9 +11,9 @@ import (
 func HandleDirectDough(c *gin.Context) {
 	var request requestModel.DoughRequest
 
-	request.DoughBallWeight = utils.ParseFormFloat64(c, "doughBallWeight")
-	request.Hydration = utils.ParseFormFloat64(c, "hydration")
-	request.DoughBallAmount = utils.ParseFormInt(c, "doughBallAmount")
+	request.DoughBallWeight = middleware.ParseFormFloat64(c, "doughBallWeight")
+	request.Hydration = middleware.ParseFormFloat64(c, "hydration")
+	request.DoughBallAmount = middleware.ParseFormInt(c, "doughBallAmount")
 
 	// Process the data and generate the recipe.
 	recipe := generateDirectRecipe(request)
@@ -37,10 +37,10 @@ func generateDirectRecipe(request requestModel.DoughRequest) directDoughModel.Di
 	totalYeast := yeast * float64(request.DoughBallAmount)
 
 	mainDough := directDoughModel.MainDough{
-		Flour:           utils.RoundToDecimal(totalFlour, 2),
-		Water:           utils.RoundToDecimal(totalWater, 2),
-		InstantDryYeast: utils.RoundToDecimal(totalYeast, 2),
-		Salt:            utils.RoundToDecimal(totalSalt, 2),
+		Flour:           middleware.RoundToDecimal(totalFlour, 2),
+		Water:           middleware.RoundToDecimal(totalWater, 2),
+		InstantDryYeast: middleware.RoundToDecimal(totalYeast, 2),
+		Salt:            middleware.RoundToDecimal(totalSalt, 2),
 	}
 
 	recipe := directDoughModel.DirectDoughResponse{
