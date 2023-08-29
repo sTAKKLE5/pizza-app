@@ -3,7 +3,7 @@ package handlers
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	utils "pizza-app/pizza_app/api/middleware"
+	"pizza-app/pizza_app/api/middleware"
 	bigaDoughModel "pizza-app/pizza_app/models/dough/biga"
 	requestModel "pizza-app/pizza_app/models/request"
 )
@@ -11,9 +11,9 @@ import (
 func HandleBigaDough(c *gin.Context) {
 	var request requestModel.DoughRequest
 
-	request.DoughBallWeight = utils.ParseFormFloat64(c, "doughBallWeight")
-	request.Hydration = utils.ParseFormFloat64(c, "hydration")
-	request.DoughBallAmount = utils.ParseFormInt(c, "doughBallAmount")
+	request.DoughBallWeight = middleware.ParseFormFloat64(c, "doughBallWeight")
+	request.Hydration = middleware.ParseFormFloat64(c, "hydration")
+	request.DoughBallAmount = middleware.ParseFormInt(c, "doughBallAmount")
 
 	// Process the data and generate the recipe.
 	recipe := generateBigaRecipe(request)
@@ -39,15 +39,15 @@ func generateBigaRecipe(request requestModel.DoughRequest) bigaDoughModel.BigaDo
 	finalDoughWater := water - bigaWater
 
 	biga := bigaDoughModel.BigaDough{
-		Flour:           utils.RoundToDecimal(bigaFlour*float64(request.DoughBallAmount), 2),
-		Water:           utils.RoundToDecimal(bigaWater*float64(request.DoughBallAmount), 2),
+		Flour:           middleware.RoundToDecimal(bigaFlour*float64(request.DoughBallAmount), 2),
+		Water:           middleware.RoundToDecimal(bigaWater*float64(request.DoughBallAmount), 2),
 		InstantDryYeast: bigaYeast * float64(request.DoughBallAmount),
 	}
 
 	mainDough := bigaDoughModel.MainDough{
-		Flour: utils.RoundToDecimal(finalDoughFlour*float64(request.DoughBallAmount), 2),
-		Water: utils.RoundToDecimal(finalDoughWater*float64(request.DoughBallAmount), 2),
-		Salt:  utils.RoundToDecimal(salt*float64(request.DoughBallAmount), 2),
+		Flour: middleware.RoundToDecimal(finalDoughFlour*float64(request.DoughBallAmount), 2),
+		Water: middleware.RoundToDecimal(finalDoughWater*float64(request.DoughBallAmount), 2),
+		Salt:  middleware.RoundToDecimal(salt*float64(request.DoughBallAmount), 2),
 	}
 
 	recipe := bigaDoughModel.BigaDoughResponse{
