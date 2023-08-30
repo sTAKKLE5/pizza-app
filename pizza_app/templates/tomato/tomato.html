@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  {{ template "head.html" . }}
+  <body>
+    {{ template "navbar.html" . }}
+    <div class="content-wrapper">
+      <div class="container mt-4" style="max-width: 600px;">
+        <form hx-post="/sauce/tomato" hx-trigger="click" hx-target="#resultTomato">
+          <div class="mb-3">
+            <label for="pizzaAmount" class="form-label">Pizza Amount:</label>
+            <input type="number" class="form-control" id="pizzaAmount" name="pizzaAmount" value="1" min="1">
+          </div>
+          <button type="submit" class="btn btn-primary" id="doughButton">Calculate</button>
+        </form>
+        <div class="mt-4" id="resultTomato"></div>
+      </div>
+    </div>
+    {{ template "footer.html" . }}
+  </body>
+</html>

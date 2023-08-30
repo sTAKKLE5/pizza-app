@@ -41,7 +41,7 @@ func generateBigaRecipe(request requestModel.DoughRequest) bigaDoughModel.BigaDo
 	biga := bigaDoughModel.BigaDough{
 		Flour:           middleware.RoundToDecimal(bigaFlour*float64(request.DoughBallAmount), 2),
 		Water:           middleware.RoundToDecimal(bigaWater*float64(request.DoughBallAmount), 2),
-		InstantDryYeast: bigaYeast * float64(request.DoughBallAmount),
+		InstantDryYeast: middleware.RoundToDecimal(bigaYeast*float64(request.DoughBallAmount), 2),
 	}
 
 	mainDough := bigaDoughModel.MainDough{
