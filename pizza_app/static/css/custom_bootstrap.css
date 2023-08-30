@@ -8,11 +8,6 @@
     border-color: rgba(171, 64, 115, 1);
 }
 
-#sauceButton {
-    color: rgb(56, 86, 91);
-    border-color: rgb(56, 86, 91);
-}
-
 .navbar a:not(.navbar-brand) {
     text-decoration: none;
 }

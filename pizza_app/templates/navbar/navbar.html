@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <nav class="navbar navbar-expand-md bg-body py-3">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" href="/">
@@ -10,14 +11,20 @@
     </button>
     <div id="navcol-2" class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class='nav-link {{if eq .currentPath "/dough/direct"}}active{{end}}' href="/dough/direct">Direct</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dough" data-bs-toggle="dropdown" aria-expanded="false">Dough</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/dough/direct">Direct</a></li>
+            <li><a class="dropdown-item" href="/dough/poolish">Poolish</a></li>
+            <li><a class="dropdown-item" href="/dough/biga">Biga</a></li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a class='nav-link {{if eq .currentPath "/dough/poolish"}}active{{end}}' href="/dough/poolish">Poolish</a>
-        </li>
-        <li class="nav-item">
-          <a class='nav-link {{if eq .currentPath "/dough/biga"}}active{{end}}' href="/dough/biga">Biga</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="sauce" data-bs-toggle="dropdown" aria-expanded="false">Sauce</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/sauce/tomato">Tomato</a></li>
+            <li><a class="dropdown-item" href="/sauce/white" disabled>White</a></li>
+          </ul>
         </li>
       </ul>
     </div>
