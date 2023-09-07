@@ -2,17 +2,34 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/ulule/limiter/v3"
+	mgin "github.com/ulule/limiter/v3/drivers/middleware/gin"
+	"github.com/ulule/limiter/v3/drivers/store/memory"
 	"net/http"
+
 	bigaDoughHandler "pizza-app/pizza_app/api/handlers/dough/biga"
 	directDoughHandler "pizza-app/pizza_app/api/handlers/dough/direct"
 	poolishDoughHandler "pizza-app/pizza_app/api/handlers/dough/poolish"
 	tomato "pizza-app/pizza_app/api/handlers/sauce/tomato"
 	white "pizza-app/pizza_app/api/handlers/sauce/white"
+	"pizza-app/pizza_app/api/middleware"
 )
 
 func SetupRouter() *gin.Engine {
+
+	// IP RATE LIMITER
+	rate, err := limiter.NewRateFromFormatted("5-S")
+	middleware.HandleError(err)
+
+	store := memory.NewStore()
+	ipRate := limiter.New(store, rate)
+	middlewareIprate := mgin.NewMiddleware(ipRate)
+
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
+
+	router.ForwardedByClientIP = true
+	router.Use(middlewareIprate)
 
 	router.LoadHTMLGlob("templates/**/*")
 
