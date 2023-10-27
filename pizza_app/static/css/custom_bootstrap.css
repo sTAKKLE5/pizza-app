@@ -31,3 +31,13 @@ body {
     flex-shrink: 0; /* prevent shrinking */
     /* Add any other styling for your footer */
 }
+
+.navbar-brand {
+    align-items: center;  /* vertically aligns the children in the middle */
+    justify-content: start;  /* horizontally aligns the children to the start */
+}
+
+.svg-logo {
+    height: 1.25em;  /* this sets the height of the SVG to be the same as the font-size of the adjacent text */
+    width: auto;  /* this keeps the SVG's aspect ratio */
+}
