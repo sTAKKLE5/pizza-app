@@ -8,6 +8,16 @@
     border-color: rgba(171, 64, 115, 1);
 }
 
+#sauceButton {
+    background-color: rgba(38, 102, 89, 1);
+    border-color: rgba(38, 102, 89, 1);
+}
+
+#sauceButton:hover, #sauceButton:focus, #sauceButton:active {
+    background-color: rgba(48, 112, 99, 0.9);
+    border-color: rgba(48, 112, 99, 1);
+}
+
 .navbar a:not(.navbar-brand) {
     text-decoration: none;
 }

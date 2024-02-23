@@ -20,4 +20,12 @@ type PoolishDoughResponse struct {
 	Hydration         float64      `json:"hydration"`
 	DoughBallWeight   float64      `json:"doughBallWeight"`
 	PoolishPercentage float64      `json:"poolishPercentage"`
+	Ingredients       Ingredients  `json:"ingredient"`
+}
+
+type Ingredients struct {
+	Flour           float64 `json:"flour"`
+	Water           float64 `json:"water"`
+	Salt            float64 `json:"salt"`
+	InstantDryYeast float64 `json:"instantDryYeast"`
 }

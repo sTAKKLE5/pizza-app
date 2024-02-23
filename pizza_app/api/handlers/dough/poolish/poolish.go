@@ -53,6 +53,13 @@ func generatePoolishRecipe(request requestModel.PoolishDoughRequest) poolishDoug
 		InstantDryYeast: middleware.RoundToDecimal(finalDoughYeast*float64(request.DoughBallAmount), 2),
 	}
 
+	ingredients := poolishDoughModel.Ingredients{
+		Flour:           poolish.Flour + mainDough.Flour,
+		Water:           poolish.Water + mainDough.Water,
+		Salt:            mainDough.Salt,
+		InstantDryYeast: poolish.InstantDryYeast + mainDough.InstantDryYeast,
+	}
+
 	recipe := poolishDoughModel.PoolishDoughResponse{
 		Poolish:           poolish,
 		MainDough:         mainDough,
@@ -60,6 +67,7 @@ func generatePoolishRecipe(request requestModel.PoolishDoughRequest) poolishDoug
 		Hydration:         request.Hydration,
 		DoughBallWeight:   request.DoughBallWeight,
 		PoolishPercentage: request.PoolishPercentage,
+		Ingredients:       ingredients,
 	}
 
 	return recipe

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  {{ template "head.html" . }}
+  <body>
+    {{ template "navbar.html" . }}
+    <div class="content-wrapper">
+      <div class="container mt-4" style="max-width: 600px;">
+        <form hx-post="/dough/pinsa" hx-trigger="click" hx-target="#resultPinsa">
+          <div class="mb-3">
+            <label for="doughBallAmountPinsa" class="form-label">Dough Ball Amount:</label>
+            <input type="number" class="form-control" id="doughBallAmountPinsa" name="doughBallAmount" value="1" min="1">
+          </div>
+          <div class="mb-3">
+            <label for="hydrationPinsa" class="form-label">Hydration (50-100):</label>
+            <input type="number" class="form-control" id="hydrationPinsa" name="hydration" value="65" min="50" max="100">
+          </div>
+          <div class="mb-3">
+            <label for="doughBallWeightPinsa" class="form-label">Dough Ball Weight (g.):</label>
+            <input type="number" class="form-control" id="doughBallWeightPinsa" name="doughBallWeight" value="270" min="100" max="300">
+          </div>
+          <button type="submit" class="btn btn-primary" id="doughButton">Calculate</button>
+        </form>
+        <div class="mt-4" id="resultPinsa"></div>
+      </div>
+    </div>
+    {{ template "footer.html" . }}
+  </body>
+</html>
