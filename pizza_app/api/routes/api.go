@@ -62,13 +62,6 @@ func SetupRouter() *gin.Engine {
 		})
 	})
 
-	router.GET("/dough/pinsa", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "pinsa.html", gin.H{
-			"url":         "http://localhost:8080/dough/pinsa",
-			"currentPath": c.Request.URL.Path,
-		})
-	})
-
 	router.GET("/sauce/tomato", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "tomato.html", gin.H{
 			"url":         "http://localhost:8080/sauce/tomato",
