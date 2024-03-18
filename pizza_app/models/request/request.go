@@ -12,7 +12,3 @@ type PoolishDoughRequest struct {
 	Hydration         float64 `json:"hydration"`
 	PoolishPercentage float64 `json:"poolishPercentage"`
 }
-
-type SauceRequest struct {
-	PizzaAmount int `json:"pizzaAmount"`
-}
