@@ -64,5 +64,19 @@ func SetupRouter() *gin.Engine {
 	router.POST("/dough/biga", bigaDoughHandler.HandleBigaDough)
 	router.POST("/dough/poolish", poolishDoughHandler.HandlePoolishDough)
 
+	router.GET("/pepper-id/:id", func(c *gin.Context) {
+		peppers := make(map[string]string)
+
+		peppers["1"] = "Aji Charapita"
+		peppers["2"] = "Aji Mango Stumpy"
+		peppers["3"] = "Habanada Orange"
+		peppers["4"] = "Pimenta Da Neyda X West Indian Yellow Habanero"
+		id := c.Param("id")
+
+		c.JSON(200, gin.H{
+			"variety": peppers[id],
+		})
+	})
+
 	return router
 }
