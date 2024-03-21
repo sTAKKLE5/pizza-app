@@ -37,6 +37,10 @@ func SetupRouter() *gin.Engine {
 	router.Static("/img", "./static/img")
 	router.Static("/js", "./static/js")
 
+	router.GET("/health", func(c *gin.Context) {
+		c.JSON(http.StatusNoContent, gin.H{})
+	})
+
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{"currentPath": c.Request.URL.Path})
 	})
