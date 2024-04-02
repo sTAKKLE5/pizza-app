@@ -80,6 +80,7 @@ func SetupRouter() *gin.Engine {
 		peppers["4-4"] = "Pimenta Da Neyda X West Indian Yellow Habanero F3. Specimen #4"
 		peppers["4-5"] = "Pimenta Da Neyda X West Indian Yellow Habanero F3. Specimen #5"
 		peppers["4-6"] = "Pimenta Da Neyda X West Indian Yellow Habanero F3. Specimen #6"
+		peppers["5"] = "Pimenta Da Neyda"
 		id := c.Param("id")
 
 		c.JSON(200, gin.H{
