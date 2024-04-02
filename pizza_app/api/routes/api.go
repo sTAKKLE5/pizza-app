@@ -86,23 +86,23 @@ func SetupRouter() *gin.Engine {
 
 		peppers["4-1"] = "Pimenta Da Neyda X West Indian Yellow Habanero"
 		generation["4-1"] = "F3"
-		specimen["4-1"] = "6"
+		specimen["4-1"] = "1"
 
 		peppers["4-2"] = "Pimenta Da Neyda X West Indian Yellow Habanero"
 		generation["4-2"] = "F3"
-		specimen["4-2"] = "6"
+		specimen["4-2"] = "2"
 
 		peppers["4-3"] = "Pimenta Da Neyda X West Indian Yellow Habanero"
 		generation["4-3"] = "F3"
-		specimen["4-3"] = "6"
+		specimen["4-3"] = "3"
 
 		peppers["4-4"] = "Pimenta Da Neyda X West Indian Yellow Habanero"
 		generation["4-4"] = "F3"
-		specimen["4-4"] = "6"
+		specimen["4-4"] = "4"
 
 		peppers["4-5"] = "Pimenta Da Neyda X West Indian Yellow Habanero"
 		generation["4-5"] = "F3"
-		specimen["4-5"] = "6"
+		specimen["4-5"] = "5"
 
 		peppers["4-6"] = "Pimenta Da Neyda X West Indian Yellow Habanero"
 		generation["4-6"] = "F3"
