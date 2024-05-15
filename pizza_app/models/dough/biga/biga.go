@@ -4,6 +4,7 @@ type BigaDough struct {
 	Flour           float64 `json:"flour"`
 	Water           float64 `json:"water"`
 	InstantDryYeast float64 `json:"instantDryYeast"`
+	FreshYeast      float64 `json:"freshYeast"`
 }
 
 type MainDough struct {

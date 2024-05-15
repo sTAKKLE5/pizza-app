@@ -44,6 +44,7 @@ func generatePoolishRecipe(request requestModel.PoolishDoughRequest) poolishDoug
 		Flour:           middleware.RoundToDecimal(poolishFlour*float64(request.DoughBallAmount), 2),
 		Water:           middleware.RoundToDecimal(poolishWater*float64(request.DoughBallAmount), 2),
 		InstantDryYeast: middleware.RoundToDecimal(poolishYeast*float64(request.DoughBallAmount), 2),
+		FreshYeast:      middleware.RoundToDecimal(poolishYeast*float64(request.DoughBallAmount)*3, 2),
 	}
 
 	mainDough := poolishDoughModel.MainDough{
@@ -51,6 +52,7 @@ func generatePoolishRecipe(request requestModel.PoolishDoughRequest) poolishDoug
 		Water:           middleware.RoundToDecimal(finalDoughWater*float64(request.DoughBallAmount), 2),
 		Salt:            middleware.RoundToDecimal(salt*float64(request.DoughBallAmount), 2),
 		InstantDryYeast: middleware.RoundToDecimal(finalDoughYeast*float64(request.DoughBallAmount), 2),
+		FreshYeast:      middleware.RoundToDecimal(poolishYeast*float64(request.DoughBallAmount)*3, 2),
 	}
 
 	ingredients := poolishDoughModel.Ingredients{
@@ -58,6 +60,7 @@ func generatePoolishRecipe(request requestModel.PoolishDoughRequest) poolishDoug
 		Water:           poolish.Water + mainDough.Water,
 		Salt:            mainDough.Salt,
 		InstantDryYeast: poolish.InstantDryYeast + mainDough.InstantDryYeast,
+		FreshYeast:      middleware.RoundToDecimal(poolishYeast*float64(request.DoughBallAmount)*3, 2),
 	}
 
 	recipe := poolishDoughModel.PoolishDoughResponse{

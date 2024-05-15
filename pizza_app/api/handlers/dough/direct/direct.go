@@ -40,6 +40,7 @@ func generateDirectRecipe(request requestModel.DoughRequest) directDoughModel.Di
 		Flour:           middleware.RoundToDecimal(totalFlour, 2),
 		Water:           middleware.RoundToDecimal(totalWater, 2),
 		InstantDryYeast: middleware.RoundToDecimal(totalYeast, 2),
+		FreshYeast:      middleware.RoundToDecimal(totalYeast*3, 2),
 		Salt:            middleware.RoundToDecimal(totalSalt, 2),
 	}
 

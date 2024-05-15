@@ -4,6 +4,7 @@ type PoolishDough struct {
 	Flour           float64 `json:"flour"`
 	Water           float64 `json:"water"`
 	InstantDryYeast float64 `json:"instantDryYeast"`
+	FreshYeast      float64 `json:"freshYeast"`
 }
 
 type MainDough struct {
@@ -11,6 +12,7 @@ type MainDough struct {
 	Water           float64 `json:"water"`
 	Salt            float64 `json:"salt"`
 	InstantDryYeast float64 `json:"instantDryYeast"`
+	FreshYeast      float64 `json:"freshYeast"`
 }
 
 type PoolishDoughResponse struct {
@@ -28,4 +30,5 @@ type Ingredients struct {
 	Water           float64 `json:"water"`
 	Salt            float64 `json:"salt"`
 	InstantDryYeast float64 `json:"instantDryYeast"`
+	FreshYeast      float64 `json:"freshYeast"`
 }
