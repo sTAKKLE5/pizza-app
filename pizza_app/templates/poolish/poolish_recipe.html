@@ -5,12 +5,16 @@
         <p>Water: {{ .Ingredients.Water }} g.</p>
         <p>Salt: {{ .Ingredients.Salt }} g.</p>
         <p>Yeast: {{ .Ingredients.InstantDryYeast }} g.</p>
+        <p><b>OR</b></p>
+        <p>Fresh Yeast: {{ .Ingredients.FreshYeast }} g.</p>
     </div>
     <div class="col-md-4">
         <h3 class="text-uppercase fw-bold">Poolish</h3>
         <p>Flour: {{ .Poolish.Flour }} g.</p>
         <p>Water: {{ .Poolish.Water }} g.</p>
-        <p>Yeast: {{ .Poolish.InstantDryYeast }} g.</p>
+        <p>Dry Yeast: {{ .Poolish.InstantDryYeast }} g.
+        <p><b>OR</b></p>
+        <p>Fresh Yeast: {{ .Poolish.FreshYeast }} g.</p>
     </div>
     <div class="col-md-4">
         <h3 class="text-uppercase fw-bold">Main Dough</h3>
@@ -18,6 +22,8 @@
         <p>Flour: {{ .MainDough.Flour }} g.</p>
         <p>Water: {{ .MainDough.Water }} g.</p>
         <p>Salt: {{ .MainDough.Salt }} g.</p>
-        <p>Yeast: {{ .MainDough.InstantDryYeast }} g.</p>
+        <p>Dry Yeast: {{ .MainDough.InstantDryYeast }} g.</p>
+        <p><b>OR</b></p>
+        <p>Fresh Yeast: {{ .MainDough.FreshYeast }} g.</p>
     </div>
 </div>

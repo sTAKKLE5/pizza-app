@@ -68,56 +68,5 @@ func SetupRouter() *gin.Engine {
 	router.POST("/dough/biga", bigaDoughHandler.HandleBigaDough)
 	router.POST("/dough/poolish", poolishDoughHandler.HandlePoolishDough)
 
-	type ResponsePepper struct {
-		Id         string `json:"id"`
-		Variety    string `json:"variety"`
-		Generation string `json:"generation"`
-		Specimen   string `json:"specimen"`
-	}
-
-	router.GET("/pepper-id/:id", func(c *gin.Context) {
-		peppers := make(map[string]string)
-		generation := make(map[string]string)
-		specimen := make(map[string]string)
-
-		peppers["1"] = "Aji Charapita"
-		peppers["2"] = "Aji Mango Stumpy"
-		peppers["3"] = "Habanada Orange"
-
-		peppers["4-1"] = "Pimenta Da Neyda X West Indian Yellow Habanero"
-		generation["4-1"] = "F3"
-		specimen["4-1"] = "1"
-
-		peppers["4-2"] = "Pimenta Da Neyda X West Indian Yellow Habanero"
-		generation["4-2"] = "F3"
-		specimen["4-2"] = "2"
-
-		peppers["4-3"] = "Pimenta Da Neyda X West Indian Yellow Habanero"
-		generation["4-3"] = "F3"
-		specimen["4-3"] = "3"
-
-		peppers["4-4"] = "Pimenta Da Neyda X West Indian Yellow Habanero"
-		generation["4-4"] = "F3"
-		specimen["4-4"] = "4"
-
-		peppers["4-5"] = "Pimenta Da Neyda X West Indian Yellow Habanero"
-		generation["4-5"] = "F3"
-		specimen["4-5"] = "5"
-
-		peppers["4-6"] = "Pimenta Da Neyda X West Indian Yellow Habanero"
-		generation["4-6"] = "F3"
-		specimen["4-6"] = "6"
-
-		peppers["5"] = "Pimenta Da Neyda"
-
-		id := c.Param("id")
-
-		c.JSON(200, gin.H{
-			"variety":    peppers[id],
-			"generation": generation[id],
-			"specimen":   specimen[id],
-		})
-	})
-
 	return router
 }
