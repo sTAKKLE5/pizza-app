@@ -34,7 +34,6 @@ func SetupRouter() *gin.Engine {
 	// add favicon
 	router.StaticFile("/favicon.ico", "./static/img/favicon.ico")
 	router.Static("/css", "./static/css")
-	router.Static("/img", "./static/img")
 	router.Static("/js", "./static/js")
 
 	router.GET("/health", func(c *gin.Context) {
@@ -42,7 +41,7 @@ func SetupRouter() *gin.Engine {
 	})
 
 	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", gin.H{"currentPath": c.Request.URL.Path})
+		c.Redirect(http.StatusMovedPermanently, "/dough/poolish")
 	})
 	router.GET("dough/biga", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "biga.html", gin.H{
