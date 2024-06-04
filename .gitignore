@@ -101,3 +101,6 @@ fabric.properties
 go.work
 
 .idea
+/pizza_app/tmp/*
+
+/pizza_app/main
