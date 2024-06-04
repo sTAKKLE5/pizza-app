@@ -15,6 +15,7 @@ func HandleBigaDough(c *gin.Context) {
 	request.Hydration = middleware.ParseFormFloat64(c, "hydration")
 	request.DoughBallAmount = middleware.ParseFormInt(c, "doughBallAmount")
 	request.FlourPercentage = middleware.ParseFormFloat64(c, "percentageBiga")
+	request.BigaHydration = middleware.ParseFormFloat64(c, "percentageBigaHydration")
 
 	// Process the data and generate the recipe.
 	recipe := generateBigaRecipe(request)
@@ -33,7 +34,7 @@ func generateBigaRecipe(request requestModel.BigaDoughRequest) bigaDoughModel.Bi
 	yeast := (flour / 1000) * yeastPerKg // Yeast in relation to the calculated flour amount
 
 	bigaFlour := flour * (request.FlourPercentage / 100) // Use the specified percentage for biga flour
-	bigaWater := bigaFlour * 0.45
+	bigaWater := bigaFlour * request.BigaHydration / 100
 	bigaYeast := yeast // All yeast is part of biga
 
 	finalDoughFlour := flour - bigaFlour
