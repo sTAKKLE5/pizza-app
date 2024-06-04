@@ -5,6 +5,7 @@
     {{ template "navbar.html" . }}
     <div class="content-wrapper">
       <div class="container mt-4" style="max-width: 600px;">
+        <h3 style="margin-bottom: 20px;">Poolish Dough Recipe</h3> <!-- Add this line -->
         <form hx-post="/dough/poolish" hx-trigger="click" hx-target="#resultPoolish">
           <div class="mb-3">
             <label for="doughBallAmountPoolish" class="form-label">Dough Ball Amount:</label>
@@ -27,6 +28,5 @@
         <div class="mt-4" id="resultPoolish"></div>
       </div>
     </div>
-    {{ template "footer.html" . }}
   </body>
 </html>

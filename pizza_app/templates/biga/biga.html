@@ -5,6 +5,7 @@
     {{ template "navbar.html" . }}
     <div class="content-wrapper">
       <div class="container mt-4" style="max-width: 600px;">
+        <h3 style="margin-bottom: 20px;">Biga Dough Recipe</h3>
         <form hx-post="/dough/biga" hx-trigger="click" hx-target="#resultBiga">
           <div class="mb-3">
             <label for="doughBallAmountBiga" class="form-label">Dough Ball Amount:</label>
@@ -18,11 +19,14 @@
             <label for="doughBallWeightBiga" class="form-label">Dough Ball Weight (g.):</label>
             <input type="number" class="form-control" id="doughBallWeightBiga" name="doughBallWeight" value="250" min="100" max="300">
           </div>
+          <div class="mb-3">
+            <label for="percentageBiga" class="form-label">Biga Percentage (0-100)</label>
+            <input type="number" class="form-control" id="percentageBiga" name="percentageBiga" value="100" min="0" max="100">
+          </div>
           <button type="submit" class="btn btn-primary" id="doughButton">Calculate</button>
         </form>
         <div class="mt-4" id="resultBiga"></div>
       </div>
     </div>
-    {{ template "footer.html" . }}
   </body>
 </html>

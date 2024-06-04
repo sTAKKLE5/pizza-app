@@ -41,7 +41,10 @@ func SetupRouter() *gin.Engine {
 	})
 
 	router.GET("/", func(c *gin.Context) {
-		c.Redirect(http.StatusMovedPermanently, "/dough/poolish")
+		c.HTML(http.StatusOK, "poolish.html", gin.H{
+			"url":         "http://localhost:8080/dough/poolish",
+			"currentPath": c.Request.URL.Path,
+		})
 	})
 	router.GET("dough/biga", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "biga.html", gin.H{

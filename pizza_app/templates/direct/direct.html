@@ -5,6 +5,7 @@
     {{ template "navbar.html" . }}
     <div class="content-wrapper">
       <div class="container mt-4" style="max-width: 600px;">
+        <h3 style="margin-bottom: 20px;">Direct Dough Recipe</h3>
         <form hx-post="/dough/direct" hx-trigger="click" hx-target="#resultDirect">
           <div class="mb-3">
             <label for="doughBallAmountDirect" class="form-label">Dough Ball Amount:</label>
@@ -23,6 +24,5 @@
         <div class="mt-4" id="resultDirect"></div>
       </div>
     </div>
-    {{ template "footer.html" . }}
   </body>
 </html>

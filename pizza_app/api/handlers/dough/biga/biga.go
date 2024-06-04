@@ -9,11 +9,12 @@ import (
 )
 
 func HandleBigaDough(c *gin.Context) {
-	var request requestModel.DoughRequest
+	var request requestModel.BigaDoughRequest
 
 	request.DoughBallWeight = middleware.ParseFormFloat64(c, "doughBallWeight")
 	request.Hydration = middleware.ParseFormFloat64(c, "hydration")
 	request.DoughBallAmount = middleware.ParseFormInt(c, "doughBallAmount")
+	request.FlourPercentage = middleware.ParseFormFloat64(c, "percentageBiga")
 
 	// Process the data and generate the recipe.
 	recipe := generateBigaRecipe(request)
@@ -22,7 +23,7 @@ func HandleBigaDough(c *gin.Context) {
 	c.HTML(http.StatusOK, "biga_recipe.html", recipe)
 }
 
-func generateBigaRecipe(request requestModel.DoughRequest) bigaDoughModel.BigaDoughResponse {
+func generateBigaRecipe(request requestModel.BigaDoughRequest) bigaDoughModel.BigaDoughResponse {
 	saltPerKg := 25.  // 2.5% of 1 kilogram of flour, fixed amount
 	yeastPerKg := 0.3 // 0.03% of 1 kilogram of flour, fixed amount
 
@@ -31,7 +32,7 @@ func generateBigaRecipe(request requestModel.DoughRequest) bigaDoughModel.BigaDo
 	salt := (flour / 1000) * saltPerKg   // Salt in relation to the calculated flour amount
 	yeast := (flour / 1000) * yeastPerKg // Yeast in relation to the calculated flour amount
 
-	bigaFlour := flour * 0.50
+	bigaFlour := flour * (request.FlourPercentage / 100) // Use the specified percentage for biga flour
 	bigaWater := bigaFlour * 0.45
 	bigaYeast := yeast // All yeast is part of biga
 
@@ -60,6 +61,5 @@ func generateBigaRecipe(request requestModel.DoughRequest) bigaDoughModel.BigaDo
 		BigaWaterPercentage: bigaWater / water * 100,
 		DoughBallWeight:     request.DoughBallWeight,
 	}
-
 	return recipe
 }
