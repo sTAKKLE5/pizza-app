@@ -14,6 +14,7 @@ func HandleBigaDough(c *gin.Context) {
 	request.DoughBallWeight = middleware.ParseFormFloat64(c, "doughBallWeight")
 	request.Hydration = middleware.ParseFormFloat64(c, "hydration")
 	request.DoughBallAmount = middleware.ParseFormInt(c, "doughBallAmount")
+	request.FermentationHours = middleware.ParseFormInt(c, "fermentationHours")
 	request.FlourPercentage = middleware.ParseFormFloat64(c, "percentageBiga")
 	request.BigaHydration = middleware.ParseFormFloat64(c, "percentageBigaHydration")
 
@@ -25,8 +26,17 @@ func HandleBigaDough(c *gin.Context) {
 }
 
 func generateBigaRecipe(request requestModel.BigaDoughRequest) bigaDoughModel.BigaDoughResponse {
-	saltPerKg := 25.  // 2.5% of 1 kilogram of flour, fixed amount
-	yeastPerKg := 0.3 // 0.03% of 1 kilogram of flour, fixed amount
+	saltPerKg := 25. // 2.5% of 1 kilogram of flour, fixed amount
+
+	// yeast depends on the fermentation time
+	var yeastPerKg float64
+	if request.FermentationHours <= 12 {
+		yeastPerKg = 3.0
+	} else if request.FermentationHours <= 24 {
+		yeastPerKg = 1.5
+	} else {
+		yeastPerKg = 0.75
+	}
 
 	flour := request.DoughBallWeight / (1 + (request.Hydration / 100))
 	water := flour * (request.Hydration / 100)
@@ -43,8 +53,8 @@ func generateBigaRecipe(request requestModel.BigaDoughRequest) bigaDoughModel.Bi
 	biga := bigaDoughModel.BigaDough{
 		Flour:           middleware.RoundToDecimal(bigaFlour*float64(request.DoughBallAmount), 2),
 		Water:           middleware.RoundToDecimal(bigaWater*float64(request.DoughBallAmount), 2),
-		InstantDryYeast: middleware.RoundToDecimal(bigaYeast*float64(request.DoughBallAmount), 2),
-		FreshYeast:      middleware.RoundToDecimal(bigaYeast*float64(request.DoughBallAmount)*3, 2),
+		InstantDryYeast: middleware.RoundToDecimal(bigaYeast*float64(request.DoughBallAmount)/2, 2), // half of the yeast for instant dry yeast
+		FreshYeast:      middleware.RoundToDecimal(bigaYeast*float64(request.DoughBallAmount), 2),
 	}
 
 	mainDough := bigaDoughModel.MainDough{
