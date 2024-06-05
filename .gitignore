@@ -104,3 +104,4 @@ go.work
 /pizza_app/tmp/*
 
 /pizza_app/main
+!/pizza_app/main
