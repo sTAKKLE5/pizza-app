@@ -1,21 +1,8 @@
-# pizza-app
-
-## TODO
-[] Use a-h/templ to render the HTML
-[x] remove sauce
-[] Migrate to Google Cloud Run!!! https://www.youtube.com/watch?v=cw34KMPSt4k
- 
-
-## Description
-This is a pizza dough recipe app using GO and HTMX and <b>no</b> JavaScript.  
- 
-
-## Build 
-```sh
-go build main.go
+```
+docker build -t pizza-app .
 ```
 
-## Run
-```sh
-./main
+
+```
+docker run -p 8080:8080 pizza-app
 ```
