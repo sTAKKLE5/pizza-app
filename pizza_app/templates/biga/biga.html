@@ -5,40 +5,46 @@
     {{ template "navbar.html" . }}
     <div class="content-wrapper">
       <div class="container mt-4" style="max-width: 600px;">
-        <h3 style="margin-bottom: 20px;">Biga Dough Recipe</h3>
-        <form hx-post="/dough/biga" hx-trigger="click" hx-target="#resultBiga">
-          <div class="mb-3">
-            <label for="doughBallAmountBiga" class="form-label">Dough Ball Amount:</label>
-            <input type="number" class="form-control" id="doughBallAmountBiga" name="doughBallAmount" value="1" min="1">
-          </div>
-          <div class="mb-3">
-            <label for="doughBallWeightBiga" class="form-label">Dough Ball Weight:</label>
-            <input type="number" class="form-control" id="doughBallWeightBiga" name="doughBallWeight" value="250" min="100" max="300">
-          </div>
-          <div class="mb-3">
-            <label for="hydrationBiga" class="form-label">Dough Hydration (50-100):</label>
-            <input type="number" class="form-control" id="hydrationBiga" name="hydration" value="65" min="50" max="100">
-          </div>
+    <h3 style="margin-bottom: 20px;">Biga Dough Recipe</h3>
+    <form hx-post="/dough/biga" hx-trigger="click" hx-target="#resultBiga">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="doughBallAmountBiga" class="form-label">Dough Ball Amount:</label>
+                <input type="number" class="form-control" id="doughBallAmountBiga" name="doughBallAmount" value="1" min="1">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="percentageBiga" class="form-label">Biga Percentage</label>
+                <input type="number" class="form-control" id="percentageBiga" name="percentageBiga" value="35" min="15" max="100">
+            </div>
+        </div>
 
-          <hr>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="doughBallWeightBiga" class="form-label">Dough Ball Weight:</label>
+                <input type="number" class="form-control" id="doughBallWeightBiga" name="doughBallWeight" value="250" min="100" max="300">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="percentageBigaHydration" class="form-label">Biga Hydration (30-70)</label>
+                <input type="number" class="form-control" id="percentageBigaHydration" name="percentageBigaHydration" value="70" min="0" max="100">
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="hydrationBiga" class="form-label">Dough Hydration (50-100):</label>
+                <input type="number" class="form-control" id="hydrationBiga" name="hydration" value="65" min="50" max="100">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="fermentationHours" class="form-label">Biga Fermentation Duration</label>
+                <input type="number" class="form-control" id="fermentationHours" name="fermentationHours" value="24" min="8" max="48">
+            </div>
+        </div>
 
-          <div class="mb-3">
-            <label for="percentageBiga" class="form-label">Biga Percentage</label>
-            <input type="number" class="form-control" id="percentageBiga" name="percentageBiga" value="35" min="15" max="100">
-          </div>
-          <div class="mb-3">
-            <label for="percentageBigaHydration" class="form-label">Biga Hydration (30-70)</label>
-            <input type="number" class="form-control" id="percentageBigaHydration" name="percentageBigaHydration" value="70" min="0" max="100">
-          </div>
-          <div class="mb-3">
-            <label for="fermentationHours" class="form-label">Biga Fermentation Duration</label>
-            <input type="number" class="form-control" id="fermentationHours" name="fermentationHours" value="24" min="8" max="48">
-          </div>
-          <button type="submit" class="btn btn-primary" id="doughButton">Calculate</button>
-        </form>
-        <div class="mt-4" id="resultBiga"></div>
-      </div>
+        <button type="submit" class="btn btn-primary" id="doughButton">Calculate</button>
+    </form>
+    <div class="mt-4" id="resultBiga"></div>
+</div>
+
     </div>
   </body>
 </html>
