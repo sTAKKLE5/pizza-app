@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  {{ template "head.html" . }}
+  <body>
+    {{ template "navbar.html" . }}
+    <div class="content-wrapper">
+      <div class="container mt-4" style="max-width: 600px;">
+        <h3 style="margin-bottom: 20px;">Sourdough Recipe</h3>
+        <form hx-post="/sourdough" hx-trigger="click" hx-target="#resultSourdough">
+          <div class="mb-3">
+            <label for="doughBallAmountSourdough" class="form-label">Dough Ball Amount:</label>
+            <input type="number" class="form-control" id="doughBallAmountSourdough" name="doughBallAmountSourdough" value="1" min="1">
+          </div>
+          <div class="mb-3">
+            <label for="hydrationSourdough" class="form-label">Hydration (50-100):</label>
+            <input type="number" class="form-control" id="hydrationSourdough" name="hydrationSourdough" value="65" min="50" max="100">
+          </div>
+          <div class="mb-3">
+            <label for="doughBallWeightSourdough" class="form-label">Dough Ball Weight (g.):</label>
+            <input type="number" class="form-control" id="doughBallWeightSourdough" name="doughBallWeightSourdough" value="250" min="100" max="300">
+          </div>
+          <button type="submit" class="btn btn-primary" id="doughButton">Calculate</button>
+        </form>
+        <div class="mt-4" id="resultSourdough"></div>
+      </div>
+    </div>
+  </body>
+</html>
