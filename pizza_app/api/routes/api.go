@@ -38,33 +38,21 @@ func SetupRouter() *gin.Engine {
 
 	// Health check endpoint
 	router.GET("/health", func(c *gin.Context) {
-		c.JSON(http.StatusNoContent, gin.H{})
+		c.JSON(http.StatusNoContent, nil)
 	})
 
 	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "biga.html", gin.H{
-			"url":         "http://localhost:8080/dough/biga",
-			"currentPath": c.Request.URL.Path,
-		})
+		c.HTML(http.StatusOK, "biga.html", nil)
 	})
-	router.GET("dough/biga", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "biga.html", gin.H{
-			"url":         "http://localhost:8080/dough/biga",
-			"currentPath": c.Request.URL.Path,
-		})
+	router.GET("biga", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "biga.html", nil)
 	})
-	router.GET("dough/poolish", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "poolish.html", gin.H{
-			"url":         "http://localhost:8080/dough/poolish",
-			"currentPath": c.Request.URL.Path,
-		})
+	router.GET("poolish", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "poolish.html", nil)
 	})
 
-	router.GET("/dough/direct", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "direct.html", gin.H{
-			"url":         "http://localhost:8080/dough/direct",
-			"currentPath": c.Request.URL.Path,
-		})
+	router.GET("/direct", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "direct.html", nil)
 	})
 
 	router.POST("/dough/direct", directDoughHandler.HandleDirectDough)
