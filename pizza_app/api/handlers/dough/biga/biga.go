@@ -17,6 +17,7 @@ func HandleBigaDough(c *gin.Context) {
 	request.FermentationHours = middleware.ParseFormInt(c, "fermentationHours")
 	request.FlourPercentage = middleware.ParseFormFloat64(c, "percentageBiga")
 	request.BigaHydration = middleware.ParseFormFloat64(c, "percentageBigaHydration")
+	request.FermentationTemperature = middleware.ParseFormInt(c, "fermentationTemperature")
 
 	// Process the data and generate the recipe.
 	recipe := generateBigaRecipe(request)

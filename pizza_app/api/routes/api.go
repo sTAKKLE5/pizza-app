@@ -36,13 +36,14 @@ func SetupRouter() *gin.Engine {
 	router.Static("/css", "./static/css")
 	router.Static("/js", "./static/js")
 
+	// Health check endpoint
 	router.GET("/health", func(c *gin.Context) {
 		c.JSON(http.StatusNoContent, gin.H{})
 	})
 
 	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "poolish.html", gin.H{
-			"url":         "http://localhost:8080/dough/poolish",
+		c.HTML(http.StatusOK, "biga.html", gin.H{
+			"url":         "http://localhost:8080/dough/biga",
 			"currentPath": c.Request.URL.Path,
 		})
 	})
