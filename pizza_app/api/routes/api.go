@@ -17,7 +17,7 @@ import (
 func SetupRouter() *gin.Engine {
 
 	// IP RATE LIMITER
-	rate, err := limiter.NewRateFromFormatted("1-S")
+	rate, err := limiter.NewRateFromFormatted("5-S")
 	middleware.HandleError(err)
 
 	store := memory.NewStore()
