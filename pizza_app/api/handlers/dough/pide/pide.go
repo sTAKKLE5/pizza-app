@@ -9,46 +9,53 @@ import (
 )
 
 func HandlePideDough(c *gin.Context) {
-	var request requestModel.DoughRequest
+	var request requestModel.DoughRequestPide
 
-	request.DoughBallWeight = middleware.ParseFormFloat64(c, "doughBallWeightPide")
-	request.Hydration = middleware.ParseFormFloat64(c, "hydrationPide")
 	request.DoughBallAmount = middleware.ParseFormInt(c, "doughBallAmountPide")
 
 	// Process the data and generate the recipe.
-	recipe := generateDirectRecipe(request)
+	recipe := generatePideRecipe(request)
 
 	// Respond with the recipe data using an HTML template.
-	c.HTML(http.StatusOK, "direct_recipe.html", recipe)
+	c.HTML(http.StatusOK, "pide_recipe.html", recipe)
 }
 
-func generateDirectRecipe(request requestModel.DoughRequest) pideDoughModel.PideDoughResponse {
-	saltPerKg := 25.  // 2.5% of 1 kilogram of flour, fixed amount
-	yeastPerKg := 0.3 // 0.03% of 1 kilogram of flour, fixed amount
+func generatePideRecipe(request requestModel.DoughRequestPide) pideDoughModel.PideDoughResponse {
+	// Constants for the recipe
+	const flourPerDoughBall = 62.5
+	const yeastPerDoughBall = 1.2
+	const waterPerDoughBall = 16.3
+	const oilPerDoughBall = 0.1
+	const saltPerKiloFlour = 25.0
 
-	flour := request.DoughBallWeight / (1 + (request.Hydration / 100))
-	water := flour * (request.Hydration / 100)
-	salt := (flour / 1000) * saltPerKg   // Salt in relation to the calculated flour amount
-	yeast := (flour / 1000) * yeastPerKg // Yeast in relation to the calculated flour amount
+	// Calculate the total amount of each ingredient
+	totalFlour := flourPerDoughBall * float64(request.DoughBallAmount)
+	totalYeast := yeastPerDoughBall * float64(request.DoughBallAmount)
+	totalWater := waterPerDoughBall * float64(request.DoughBallAmount)
+	totalOil := oilPerDoughBall * float64(request.DoughBallAmount)
+	totalSalt := (totalFlour / 1000.0) * saltPerKiloFlour // Convert flour to kilos before calculating salt
 
-	totalFlour := flour * float64(request.DoughBallAmount)
-	totalWater := water * float64(request.DoughBallAmount)
-	totalSalt := salt * float64(request.DoughBallAmount)
-	totalYeast := yeast * float64(request.DoughBallAmount)
+	// Round the amounts to 2 decimal places
+	totalFlour = middleware.RoundToDecimal(totalFlour, 2)
+	totalYeast = middleware.RoundToDecimal(totalYeast, 2)
+	totalWater = middleware.RoundToDecimal(totalWater, 2)
+	totalOil = middleware.RoundToDecimal(totalOil, 2)
+	totalSalt = middleware.RoundToDecimal(totalSalt, 2)
 
+	// Create the MainDough object
 	mainDough := pideDoughModel.MainDough{
-		Flour:           middleware.RoundToDecimal(totalFlour, 2),
-		Water:           middleware.RoundToDecimal(totalWater, 2),
-		InstantDryYeast: middleware.RoundToDecimal(totalYeast, 2),
-		FreshYeast:      middleware.RoundToDecimal(totalYeast*3, 2),
-		Salt:            middleware.RoundToDecimal(totalSalt, 2),
+		Flour:      totalFlour,
+		Water:      totalWater,
+		FreshYeast: totalYeast,
+		Salt:       totalSalt,
+		OliveOil:   totalOil,
 	}
 
+	// Create the PideDoughResponse object
 	recipe := pideDoughModel.PideDoughResponse{
 		MainDough:       mainDough,
 		DoughBallAmount: request.DoughBallAmount,
-		Hydration:       request.Hydration,
-		DoughBallWeight: request.DoughBallWeight,
+		DoughBallWeight: 100, // Each dough ball weighs 100 grams
 	}
 
 	return recipe
