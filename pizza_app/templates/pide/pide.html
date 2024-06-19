@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  {{ template "head.html" . }}
+  <body>
+    {{ template "navbar.html" . }}
+    <div class="content-wrapper">
+      <div class="container mt-4" style="max-width: 600px;">
+        <h3 style="margin-bottom: 20px;">Pide Recipe</h3>
+        <form hx-post="/pide" hx-trigger="click" hx-target="#resultPide">
+          <div class="mb-3">
+            <label for="doughBallAmountPide" class="form-label">Dough Ball Amount:</label>
+            <input type="number" class="form-control" id="doughBallAmountPide" name="doughBallAmountPide" value="1" min="1">
+          </div>
+          <div class="mb-3">
+            <label for="hydrationPide" class="form-label">Hydration (50-100):</label>
+            <input type="number" class="form-control" id="hydrationPide" name="hydrationPide" value="65" min="50" max="100">
+          </div>
+          <div class="mb-3">
+            <label for="doughBallWeightPide" class="form-label">Dough Ball Weight (g.):</label>
+            <input type="number" class="form-control" id="doughBallWeightPide" name="doughBallWeightPide" value="250" min="100" max="300">
+          </div>
+          <button type="submit" class="btn btn-primary" id="doughButton">Calculate</button>
+        </form>
+        <div class="mt-4" id="resultPide"></div>
+      </div>
+    </div>
+  </body>
+</html>
