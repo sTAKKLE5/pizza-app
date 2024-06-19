@@ -6,6 +6,10 @@ type DoughRequest struct {
 	DoughBallWeight float64 `json:"doughBallWeight"` // In grams
 }
 
+type DoughRequestPide struct {
+	DoughBallAmount int `json:"doughBallAmount"` // In number of dough balls
+}
+
 type BigaDoughRequest struct {
 	DoughBallAmount         int     `json:"doughBallAmount"`         // In number of dough balls
 	Hydration               float64 `json:"hydration"`               // In percentage from 0 to 100

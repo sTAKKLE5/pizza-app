@@ -9,6 +9,7 @@ import (
 
 	bigaDoughHandler "pizza-app/pizza_app/api/handlers/dough/biga"
 	directDoughHandler "pizza-app/pizza_app/api/handlers/dough/direct"
+	pideDoughHandler "pizza-app/pizza_app/api/handlers/dough/pide"
 	poolishDoughHandler "pizza-app/pizza_app/api/handlers/dough/poolish"
 	sourDoughHandler "pizza-app/pizza_app/api/handlers/dough/sourdough"
 	"pizza-app/pizza_app/api/middleware"
@@ -60,10 +61,15 @@ func SetupRouter() *gin.Engine {
 		c.HTML(http.StatusOK, "sourdough.html", nil)
 	})
 
+	router.GET("/pide", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "pide.html", nil)
+	})
+
 	router.POST("/direct", directDoughHandler.HandleDirectDough)
 	router.POST("/biga", bigaDoughHandler.HandleBigaDough)
 	router.POST("/poolish", poolishDoughHandler.HandlePoolishDough)
 	router.POST("/sourdough", sourDoughHandler.HandleSourDough)
+	router.POST("/pide", pideDoughHandler.HandlePideDough)
 
 	return router
 }
